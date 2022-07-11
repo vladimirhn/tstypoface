@@ -47,8 +47,13 @@ export default class ObjectFieldDescription {
         return this;
     }
 
-    public setVisible(visible:boolean) {
+    public setVisible(visible:boolean):ObjectFieldDescription {
         this._isVisible = visible;
+        return this;
+    }
+
+    public setMain(isMain:boolean):ObjectFieldDescription {
+        this._isMain = isMain;
         return this;
     }
 

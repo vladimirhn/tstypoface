@@ -16,16 +16,17 @@ export default class DataSet<T> {
     private _tableDescription?:TableDescription;
     private _entriesArray:DataObject<T>[] = [];
 
-    private redraw:Runnable = ()=>{};
+    private _rerender:Runnable = ()=>{};
     private _multiChoice = false;
 
     constructor(domainClass:DomainClass<T>, data:any) {
-        this.setUpDataSet(domainClass.objectDescription(), "", data);
+        this.setUpDataSet(domainClass.objectDescription(), "", data, ()=>{});
     }
 
-    setUpDataSet = (objectDescription:ObjectDescription<T> | undefined, path:string, data:any) => {
+    setUpDataSet = (objectDescription:ObjectDescription<T> | undefined, path:string, data:any, rerender:Runnable) => {
         this._objectDescription = objectDescription;
         this._tableDescription = DataSchema.table(path);
+        this._rerender = rerender;
 
         if (!data) data = {data:[]};
         this._initEntriesArray(data);
@@ -51,10 +52,6 @@ export default class DataSet<T> {
     }
     // --- finish initialization
 
-    public setRedrawFunction = (redraw:Runnable) => {
-        this.redraw = redraw;
-    }
-
     // Selection
     public toggleOneSelection = (entry:DataObject<T>) => {
 
@@ -65,7 +62,7 @@ export default class DataSet<T> {
                 t.isSelected = false;
             }
         }
-        this.redraw();
+        this._rerender();
     }
 
     public toggleMultiSelection = (entry:DataObject<T>) => {
@@ -74,7 +71,7 @@ export default class DataSet<T> {
                 t.isSelected = !t.isSelected;
             }
         }
-        this.redraw();
+        this._rerender();
     }
 
     get oneSelectedEntry() {

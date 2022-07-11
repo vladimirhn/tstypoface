@@ -1,30 +1,33 @@
 import '../../../library/appearance/layouts/BasicAppLayout/pages.css';
 import '../../../library/appearance/themes/common/size.css'
 
-import React, {useEffect, useState, useReducer} from 'react';
-import dataUpdateEffect from "../../../library/data/dataSet/events/DataUpdateEffect";
-import MoneyMovementsDataSet from "../../domain/enterprises/MoneyMovementsDataSet";
-import DomainClassTable from "../../../library/widgets/tables/dataSetTable/DomainClassTable";
-import DataSetManager from "../../../library/data/dataSet/DataSetManager";
+import React, {useEffect, useState, useReducer, FunctionComponent} from 'react';
+import Repository from "../../../library/data/backend/Repository";
+import Domain from "../../domain/Domain";
+import MoneyMovement from "../../domain/enterprises/MoneyMovement";
+import DataObject from "../../../library/data/dataObject/DataObject";
+import {DataSetTable} from "../../../library/widgets/tables/dataSetTable/DataSetTable";
+import TableConfig from "../../../library/widgets/tables/dataSetTable/TableConfig";
 
-export default function MoneyMovementPage() {
-
-    const [moneyMovementsDataSet,] = useState(DataSetManager.getNew(MoneyMovementsDataSet));
+export const MoneyMovementPage: FunctionComponent = () => {
 
     const [, forceUpdate] = useReducer((x) => x + 1, 0, (a) => a);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(dataUpdateEffect(moneyMovementsDataSet, forceUpdate));
+    const [repository, ] = useState<Repository<any>>(new Repository<any>(Domain.get(MoneyMovement), forceUpdate));
+
+    useEffect(() => {
+        repository.fetchAll();
+    }, [])
 
     const [deposit, setDeposit] = useState("");
     const [withdraw, setWithdraw] = useState("");
 
     const processPersistDeposit = () => {
-        moneyMovementsDataSet.persistObject({amount: deposit});
+        repository.insert(DataObject.withField(MoneyMovement.amount, deposit));
         setDeposit("");
     }
 
     const processPersistWithdraw = () => {
-        moneyMovementsDataSet.persistObject({amount: -withdraw});
+        repository.insert(DataObject.withField(MoneyMovement.amount, -withdraw));
         setWithdraw("");
     }
 
@@ -58,9 +61,9 @@ export default function MoneyMovementPage() {
 
             <br/><br/>
 
-            <DomainClassTable
-                dataSet={moneyMovementsDataSet}
-                noDel={false}
+            <DataSetTable
+                repository={repository}
+                config={new TableConfig()}
             />
         </div>
     );

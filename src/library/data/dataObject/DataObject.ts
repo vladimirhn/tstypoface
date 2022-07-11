@@ -14,6 +14,13 @@ export default class DataObject<T> {
         return new DataObject().setUp({}, DataSet.empty());
     }
 
+    public static withField(field:ObjectFieldDescription, value:any): DataObject<any> {
+        const result:DataObject<any> = DataObject.empty();
+        result.data?.setValueByField(field, value);
+
+        return result;
+    }
+
     public data?:Data<T>;
     private objectDescription?:ObjectDescription<T>;
     private _tableDescription?:TableDescription;

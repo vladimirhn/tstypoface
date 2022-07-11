@@ -52,7 +52,7 @@ export default class Repository<T> {
             .then((result:any) => {
                 this._state = RepositoryState.DATA_FETCHED;
                 this._dataState = DataState.FETCHED_ALL;
-                this.dataSet.setUpDataSet(this._objectDescription, this._path, result);
+                this.dataSet.setUpDataSet(this._objectDescription, this._path, result, this._rerender);
                 this._rerender();
             });
     }
@@ -71,20 +71,18 @@ export default class Repository<T> {
 
                 this._state = RepositoryState.DATA_FETCHED;
                 this._dataState = DataState.FILTERED;
-                this.dataSet.setUpDataSet(this._objectDescription, this._path, result);
+                this.dataSet.setUpDataSet(this._objectDescription, this._path, result, this._rerender);
                 this._rerender();
             });
     }
 
-    insert(data:any, callback: Consumer) {
-        Fetcher.postForText(data, this._path + "/insert")
+    insert(example:DataObject<T>) {
+        Fetcher.postForText(example.data?.getObject(), this._path + "/insert")
             .then(result => {
 
                 alert("Сохранено");
 
-                if (callback) {
-                    callback(result);
-                }
+                this.fetchAll();
             });
     }
 
@@ -106,7 +104,7 @@ export default class Repository<T> {
             .then(result => {
 
                 alert("Удалено");
-                this._rerender();
+                this.fetchAll();
             });
     }
 

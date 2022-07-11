@@ -2,6 +2,8 @@ import FinancialTransaction from "./enterprises/FinancialTransaction";
 import AbstractDomain from "../../library/data/schema/AbstractDomain";
 import Class from "../../library/reflection/Class";
 import DomainClass from "../../library/reflection/DomainClass";
+import MoneyMovement from "./enterprises/MoneyMovement";
+import ConsumableType from "./consumables/ConsumableType";
 
 export default class Domain {
 
@@ -9,7 +11,9 @@ export default class Domain {
 
     static instance:AbstractDomain = new AbstractDomain(new Map<Class<any>, DomainClass<any>>(
         [
-            [FinancialTransaction, new FinancialTransaction()]
+            [FinancialTransaction, new FinancialTransaction()],
+            [MoneyMovement, new MoneyMovement()],
+            [ConsumableType, new ConsumableType()],
         ]
     ));
 

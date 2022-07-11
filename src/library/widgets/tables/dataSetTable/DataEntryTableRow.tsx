@@ -2,10 +2,10 @@ import React, {FunctionComponent} from 'react';
 import DataType from "../../../data/dataObject/DataType";
 import Dates from "../../../tools/Dates";
 import DataObject from "../../../data/dataObject/DataObject";
-import Class from "../../../reflection/Class";
+import Runnable from "../../../functions/interfaces/Runnable";
 
 interface properties {
-    entry:DataObject<any>
+    entry:DataObject<any>;
 }
 
 export const DataEntryTableRow: FunctionComponent<properties> = ({ entry }) => {
