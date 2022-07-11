@@ -80,7 +80,7 @@ export default class AppStateData {
     //TODO выделить во что-то отдельное
     private getCookiesData(): CookiesData {
 
-        let cookieObject: CookiesData = {login: undefined, expiration: undefined,};
+        let cookieObject: CookiesData = new CookiesData();
         let cookies = document.cookie.split(/;/);
 
         for (let i = 0; i < cookies.length; i++) {
