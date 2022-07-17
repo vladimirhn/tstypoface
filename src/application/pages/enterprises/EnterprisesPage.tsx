@@ -2,20 +2,18 @@ import '../../../library/appearance/layouts/BasicAppLayout/pages.css';
 import '../../../library/appearance/themes/common/size.css'
 
 import React, {useEffect, useState, FunctionComponent, useReducer} from 'react';
-import Domain from "../../domain/Domain";
 import FinancialTransaction from "../../domain/enterprises/FinancialTransaction";
 import DataSet from "../../../library/data/dataSet/DataSet";
 import TableConfig from "../../../library/widgets/tables/dataSetTable/TableConfig";
-import Repository from "../../../library/data/backend/Repository";
 import {DataSetTable} from "../../../library/widgets/tables/dataSetTable/DataSetTable";
+import Repository from "../../../library/data/backend/Repository";
 
 export const EnterprisesPage: FunctionComponent = () => {
 
-    const [, forceUpdate] = useReducer((x) => x + 1, 0, (a) => a);
-    const [finTransRepository, ] = useState<Repository<any>>(new Repository<any>(Domain.get(FinancialTransaction), forceUpdate));
+    const [finTransRepository, setRepository] = useState<Repository<any>>(Repository.empty(FinancialTransaction));
 
     useEffect(() => {
-        finTransRepository.fetchAll();
+        finTransRepository.initialFetchAll(setRepository);
     }, [])
 
     return (

@@ -7,7 +7,7 @@ import ObjectDescription from "../../../library/data/backend/ObjectDescription";
 
 export default class ConsumableType extends DomainClass<ConsumableType>{
 
-    static readonly path = Paths.consumableTypes2;
+    static readonly path = Paths.consumableTypes;
 
     static id = IdFieldDescription.create();
     static type = ObjectFieldDescription.label("тип").setMain(true);

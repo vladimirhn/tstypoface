@@ -2,20 +2,18 @@ import '../../../library/appearance/layouts/BasicAppLayout/pages.css';
 import '../../../library/appearance/themes/common/size.css'
 
 import React, {useEffect, useState, useReducer, FunctionComponent} from 'react';
-import Repository from "../../../library/data/backend/Repository";
-import Domain from "../../domain/Domain";
 import MoneyMovement from "../../domain/enterprises/MoneyMovement";
 import DataObject from "../../../library/data/dataObject/DataObject";
 import {DataSetTable} from "../../../library/widgets/tables/dataSetTable/DataSetTable";
 import TableConfig from "../../../library/widgets/tables/dataSetTable/TableConfig";
+import Repository from "../../../library/data/backend/Repository";
 
 export const MoneyMovementPage: FunctionComponent = () => {
 
-    const [, forceUpdate] = useReducer((x) => x + 1, 0, (a) => a);
-    const [repository, ] = useState<Repository<any>>(new Repository<any>(Domain.get(MoneyMovement), forceUpdate));
+    const [repository, setRepository] = useState<Repository<any>>(Repository.empty(MoneyMovement));
 
     useEffect(() => {
-        repository.fetchAll();
+        repository.initialFetchAll(setRepository);
     }, [])
 
     const [deposit, setDeposit] = useState("");

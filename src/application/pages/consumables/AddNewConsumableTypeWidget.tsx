@@ -11,18 +11,32 @@ import {DataSetTable} from "../../../library/widgets/tables/dataSetTable/DataSet
 import ConsumableType from "../../domain/consumables/ConsumableType";
 import {ChooseConsumableTypeWidget} from "./ChooseConsumableTypeWidget";
 import DataObject from "../../../library/data/dataObject/DataObject";
+import {ConsumablesSubPage} from "./ConsumablesSubPage";
+import Consumer from "../../../library/functions/interfaces/Consumer";
+import retreat from "../../../library/navigation/retreat";
+import Data from "../../../library/data/dataObject/Data";
 
 interface properties {
-    type:DataObject<ConsumableType> | undefined;
+    navigation:Array<ConsumablesSubPage>;
+    updateNavigation: React.Dispatch<React.SetStateAction<ConsumablesSubPage[]>>;
 }
 
-export const ConsumableItemsWidget: FunctionComponent<properties> = ({type}) => {
+export const AddNewConsumableTypeWidget: FunctionComponent<properties> = ({navigation, updateNavigation}) => {
 
-    if (!type) return null;
-
-
+    const [newType, updateNewType] = useState<Data<ConsumableType>>(Data.pure);
+    useEffect(() => {newType.updater = updateNewType;}, [])
 
     return <>
+        <button onClick={() => {updateNavigation(retreat(navigation))}}>
+            Назад
+        </button><br/><br/>
 
+        <input
+            value={newType.getValueByField(ConsumableType.type) || ""}
+            onChange={(e) => {
+                newType.setValueByField(ConsumableType.type, e.target.value)
+                }
+            }
+        />
     </>;
 }

@@ -12,19 +12,17 @@ import ConsumableType from "../../domain/consumables/ConsumableType";
 import {ChooseConsumableTypeWidget} from "./ChooseConsumableTypeWidget";
 import DataObject from "../../../library/data/dataObject/DataObject";
 
-export const ManageConsumablesPage: FunctionComponent = () => {
+interface properties {
+    type:DataObject<ConsumableType> | undefined;
+}
 
-    const [type, setType] = useState<DataObject<ConsumableType> | undefined>(undefined);
+export const ConsumableItemsWidget: FunctionComponent<properties> = ({type}) => {
+
+    if (!type) return null;
+
+
 
     return <>
-        <div>
-            <ChooseConsumableTypeWidget
-                setter={setType}
-            />
-        </div>
 
-        <div>
-
-        </div>
     </>;
 }
