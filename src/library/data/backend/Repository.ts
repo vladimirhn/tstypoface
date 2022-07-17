@@ -7,24 +7,36 @@ import DomainClass from "../../reflection/DomainClass";
 import Runnable from "../../functions/interfaces/Runnable";
 import {DataState} from "../dataSet/DataState";
 import DataObject from "../dataObject/DataObject";
+import Domain from "../../../application/domain/Domain";
+import Class from "../../reflection/Class";
 
-export default class Repository<T> {
+export default class Repository2<T> {
 
+    static empty(klass: Class<any>):Repository2<any> {
+        return new Repository2<any>(Domain.get(klass));
+    }
+
+    private readonly _domainClass:DomainClass<T> | undefined;
     private readonly _path:string;
     private readonly _objectDescription?:ObjectDescription<T>;
     public dataSet:DataSet<T> = DataSet.empty();
-    public readonly _rerender:Runnable;
+    public _rerender:Runnable = () => {
+        if (this._repoSetter) {
+            this._repoSetter(this.duplicate());
+        }
+    };
+    public _repoSetter:Consumer | undefined;
 
     private readonly _defaultOrderBy:string | undefined;
 
     private _state:RepositoryState = RepositoryState.NOT_INITIATED;
     private _dataState:DataState = DataState.UNFETCHED;
 
-    constructor(domainClass:DomainClass<T> | undefined, rerender: Runnable) {
+    constructor(domainClass:DomainClass<T> | undefined) {
 
+        this._domainClass = domainClass;
         this._path = domainClass?.path || "";
         this._objectDescription = domainClass?.objectDescription();
-        this._rerender = rerender;
 
         this._defaultOrderBy = this._objectDescription?.orderByField;
     }
@@ -41,6 +53,19 @@ export default class Repository<T> {
         return this._dataState;
     }
 
+    initialFetchAll = (repoSetter:Consumer) => {
+        this._repoSetter = repoSetter;
+        this.fetchAll();
+    }
+
+    duplicate():Repository2<any> {
+        let duplicate:Repository2<any> = new Repository2(this._domainClass);
+        duplicate.dataSet = this.dataSet;
+        duplicate._state = this._state;
+
+        return duplicate;
+    }
+
     fetchAll = () => {
 
         let path = this._path + "/get_all";
@@ -53,7 +78,8 @@ export default class Repository<T> {
                 this._state = RepositoryState.DATA_FETCHED;
                 this._dataState = DataState.FETCHED_ALL;
                 this.dataSet.setUpDataSet(this._objectDescription, this._path, result, this._rerender);
-                this._rerender();
+
+                if (this._rerender) this._rerender();
             });
     }
 
