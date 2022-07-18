@@ -12,6 +12,7 @@ export default class ConsumableType extends DomainClass<ConsumableType>{
     static id = IdFieldDescription.create();
     static type = ObjectFieldDescription.label("тип").setMain(true);
     static deleted = ObjectFieldDescription.label("удалено").withType(DataType.BOOLEAN).setVisible(false);
+    static properties = ObjectFieldDescription.label("").setVisible(false).withType(DataType.ARRAY)
 
     static readonly objectDescription: ObjectDescription<ConsumableType> = new ObjectDescription<ConsumableType>(ConsumableType);
 

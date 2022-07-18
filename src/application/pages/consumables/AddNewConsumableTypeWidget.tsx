@@ -15,6 +15,9 @@ import {ConsumablesSubPage} from "./ConsumablesSubPage";
 import Consumer from "../../../library/functions/interfaces/Consumer";
 import retreat from "../../../library/navigation/retreat";
 import Data from "../../../library/data/dataObject/Data";
+import {TextInput} from "../../../library/widgets/fieldInputs/TextInput";
+import {MainMenuEntry} from "../../../library/appearance/layouts/BasicAppLayout/menu/MainMenuEntry";
+import {SimpleTextInput} from "../../../library/widgets/fieldInputs/SimpleTextInput";
 
 interface properties {
     navigation:Array<ConsumablesSubPage>;
@@ -24,19 +27,37 @@ interface properties {
 export const AddNewConsumableTypeWidget: FunctionComponent<properties> = ({navigation, updateNavigation}) => {
 
     const [newType, updateNewType] = useState<Data<ConsumableType>>(Data.pure);
-    useEffect(() => {newType.updater = updateNewType;}, [])
+    useEffect(() => {
+        newType.update = updateNewType;
+        newType.setValueByField(ConsumableType.properties, []);
+        }, [])
+
+    const properties:Array<any> = newType.getValueByField(ConsumableType.properties) || [];
+
+    const addProperty = () => {
+        properties.push("");
+        newType.setValueByField(ConsumableType.properties, properties);
+    }
+
+    const propsWidgets = properties.map((property, index) => {
+        return <SimpleTextInput
+            key={index}
+            label={"Свойство №" + (index + 1)}
+            value={property}
+            setter={(newValue) => {property = newValue}}
+        />;
+    });
+
+    const addPropButton = properties.length < 20 ? <button onClick={addProperty}>Добавить свойство</button> : null;
 
     return <>
         <button onClick={() => {updateNavigation(retreat(navigation))}}>
             Назад
         </button><br/><br/>
 
-        <input
-            value={newType.getValueByField(ConsumableType.type) || ""}
-            onChange={(e) => {
-                newType.setValueByField(ConsumableType.type, e.target.value)
-                }
-            }
-        />
+        <TextInput data={newType} field={ConsumableType.type} label={"Тип расходного материала: "}/>
+
+        {propsWidgets}
+        {addPropButton}
     </>;
 }
