@@ -3,11 +3,11 @@ import '../../../library/appearance/themes/common/size.css'
 
 import React, {useState, FunctionComponent} from 'react';
 import ConsumableType from "../../domain/consumables/ConsumableType";
-import {ChooseConsumableTypeWidget} from "./ChooseConsumableTypeWidget";
+import {ChooseConsumableTypeWidget} from "./types/ChooseConsumableTypeWidget";
 import DataObject from "../../../library/data/dataObject/DataObject";
 import {ConsumableItemsWidget} from "./ConsumableItemsWidget";
 import {ConsumablesSubPage} from "./ConsumablesSubPage";
-import {AddNewConsumableTypeWidget} from "./AddNewConsumableTypeWidget";
+import {AddNewConsumableTypeWidget} from "./types/AddNewConsumableTypeWidget";
 import proceed from "../../../library/navigation/proceed";
 
 export const ManageConsumablesPage: FunctionComponent = () => {

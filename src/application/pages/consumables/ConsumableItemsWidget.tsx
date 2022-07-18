@@ -9,7 +9,7 @@ import TableConfig from "../../../library/widgets/tables/dataSetTable/TableConfi
 import Repository from "../../../library/data/backend/Repository";
 import {DataSetTable} from "../../../library/widgets/tables/dataSetTable/DataSetTable";
 import ConsumableType from "../../domain/consumables/ConsumableType";
-import {ChooseConsumableTypeWidget} from "./ChooseConsumableTypeWidget";
+import {ChooseConsumableTypeWidget} from "./types/ChooseConsumableTypeWidget";
 import DataObject from "../../../library/data/dataObject/DataObject";
 
 interface properties {
