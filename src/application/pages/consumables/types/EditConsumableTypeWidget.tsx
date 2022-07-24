@@ -20,15 +20,24 @@ import {ProcessConsumableTypeWidget} from "./ProcessConsumableTypeWidget";
 interface properties {
     navigation:Array<ConsumablesSubPage>;
     updateNavigation: React.Dispatch<React.SetStateAction<ConsumablesSubPage[]>>;
+    type:DataObject<ConsumableType> | undefined;
 }
 
-export const AddNewConsumableTypeWidget: FunctionComponent<properties> = ({navigation, updateNavigation}) => {
+export const EditConsumableTypeWidget: FunctionComponent<properties> = ({type, navigation, updateNavigation}) => {
 
-    const [newType, updateNewType] = useState<Data<ConsumableType>>(Data.pure);
+    const [typeData, setTypeData] = useState<Data<ConsumableType> | undefined>(type?.data);
+
+    const propSetter = (properties:any) => {
+
+        console.log(properties)
+
+        if (type && type.data) type.data.setValueByField(ConsumableType.properties, properties.data);
+    }
+
     useEffect(() => {
-        newType.update = updateNewType;
-        newType.setValueByField(ConsumableType.properties, []);
-        }, [])
+        if (type && type.data) type.data.update = setTypeData;
+        Repository.empty(ConsumableProperty).simplyFetchFiltered(DataObject.withField(ConsumableProperty.typeId, type?.data?.id), propSetter);
+    }, [])
 
-    return <ProcessConsumableTypeWidget navigation={navigation} updateNavigation={updateNavigation} type={newType}/>
+    return <ProcessConsumableTypeWidget navigation={navigation} updateNavigation={updateNavigation} type={typeData}/>
 }

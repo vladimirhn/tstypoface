@@ -1,4 +1,5 @@
 
 export enum ConsumablesSubPage {
-    ADD
+    ADD_TYPE,
+    EDIT_TYPE,
 }

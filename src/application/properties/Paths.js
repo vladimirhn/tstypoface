@@ -6,6 +6,7 @@ export default class Paths {
     static consumables = Paths.userPrefix + "/consumables";
     static consumableItems = Paths.userPrefix + "/consumable_items";
     static consumableTypes = Paths.userPrefix + "/consumable_types";
+    static consumableProperties = Paths.userPrefix + "/consumable_properties";
 
     static purchasingConsumables = Paths.userPrefix + "/purchasing_consumables";
 
