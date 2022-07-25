@@ -7,12 +7,14 @@ import DataObject from "../../../../library/data/dataObject/DataObject";
 
 interface properties {
     setter: Consumer<DataObject<any>>;
+    selectedId?:string;
 }
-export const ChooseConsumableTypeWidget: FunctionComponent<properties> = ({setter}) => {
+export const ChooseConsumableTypeWidget: FunctionComponent<properties> = ({setter, selectedId}) => {
 
     const [consumableTypesRepository, setRepository] = useState<Repository<any>>(Repository.empty(ConsumableType));
 
     let updating = (repo:Repository<any>) => {
+        if (selectedId) repo.dataSet.setSelectedById(selectedId);
         setRepository(repo);
     }
 

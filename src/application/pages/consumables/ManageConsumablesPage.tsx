@@ -17,7 +17,7 @@ export const ManageConsumablesPage: FunctionComponent = () => {
     const [navigation, updateNavigation] = useState<Array<ConsumablesSubPage>>([]);
     const [type, setType] = useState<DataObject<ConsumableType> | undefined>(undefined);
 
-    const chooseConsumableTypeWidget = <ChooseConsumableTypeWidget setter={setType}/>
+    const chooseConsumableTypeWidget = <ChooseConsumableTypeWidget setter={setType} selectedId={type?.data?.id}/>
     const addButton = <button onClick={() => {updateNavigation(proceed(navigation, ConsumablesSubPage.ADD_TYPE)) }}>Добавить</button>
     const editButton = type ? <button onClick={() => {updateNavigation(proceed(navigation, ConsumablesSubPage.EDIT_TYPE)) }}>Изменить</button> : null;
 
