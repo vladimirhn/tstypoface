@@ -1,25 +1,37 @@
 import Consumer from "../../../../library/functions/interfaces/Consumer";
 import React, {FunctionComponent} from "react";
 import {InlineLayout} from "../../../../library/widgets/layouts/InlineLayout";
+import {getFromObject, setToObject} from "../../../../library/data/dataObject/VanilaObjects";
+import ConsumableProperty from "../../../domain/consumables/ConsumableProperty";
 
 interface properties {
     index:number;
-    value:string;
+    property:any
     setter:Consumer<any>;
 }
 
-export const EditTypePropertySubWidget: FunctionComponent<properties> = ({index, value, setter}) => {
+export const EditTypePropertySubWidget: FunctionComponent<properties> = ({index, property, setter}) => {
 
     const label = "Свойство №" + (index + 1);
     const labelWidget = <>{label}</>
 
     const widget:JSX.Element = <input
-        value={value || ""}
+        value={getFromObject(property, ConsumableProperty.propertyName) || ""}
         onChange={(e) => {setter(e.target.value)}}
     />
 
+    const remove = () => {
+        const id:string = getFromObject(property, ConsumableProperty.id);
+        if (id) {
+            setToObject(property, ConsumableProperty.id, "-" + id)
+            setter(getFromObject(property, ConsumableProperty.propertyName));
+        } else {
+            setter(null);
+        }
+    }
+
     const removeButton =
-        <button onClick={()=> setter(null)}>удалить</button>
+        <button onClick={remove}>удалить</button>
 
     return <InlineLayout widgets={[labelWidget, widget, removeButton]}/>
 }

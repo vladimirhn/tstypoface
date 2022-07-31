@@ -1,7 +1,7 @@
 import '../../../library/appearance/layouts/BasicAppLayout/pages.css';
 import '../../../library/appearance/themes/common/size.css'
 
-import React, {FunctionComponent, useEffect, useState} from 'react';
+import React, {FunctionComponent, useState} from 'react';
 import ConsumableType from "../../domain/consumables/ConsumableType";
 import {ChooseConsumableTypeWidget} from "./types/ChooseConsumableTypeWidget";
 import DataObject from "../../../library/data/dataObject/DataObject";

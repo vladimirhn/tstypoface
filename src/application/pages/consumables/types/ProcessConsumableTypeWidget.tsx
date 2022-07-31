@@ -34,21 +34,26 @@ export const ProcessConsumableTypeWidget: FunctionComponent<properties> = ({type
         type.setValueByField(ConsumableType.properties, properties);
     }
 
-    const propsWidgets = properties.map((property:Data<any>, index) => {
-        return <EditTypePropertySubWidget
-            key={index}
-            index={index}
-            value={getFromObject(property, ConsumableProperty.propertyName)}
-            setter={(newValue) => {
+    const propsWidgets = properties.map((property:any, index) => {
 
-                if (newValue === null) {
-                    properties.splice(index, 1);
-                } else {
-                    setToObject(properties[index], ConsumableProperty.propertyName, newValue);
-                }
-                type.setValueByField(ConsumableType.properties, properties);
-            }}
-        />;
+        const id:string = getFromObject(property, ConsumableProperty.id);
+
+        if (!id.startsWith('-')) {
+            return <EditTypePropertySubWidget
+                key={index}
+                index={index}
+                property={property}
+                setter={(newValue) => {
+
+                    if (newValue === null) {
+                        properties.splice(index, 1);
+                    } else {
+                        setToObject(properties[index], ConsumableProperty.propertyName, newValue);
+                    }
+                    type.setValueByField(ConsumableType.properties, properties);
+                }}
+            />;
+        } else return null;
     });
 
     const addPropButton = properties.length < 20 ? <button onClick={addProperty}>Добавить свойство</button> : null;
