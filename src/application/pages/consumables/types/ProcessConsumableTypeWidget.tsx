@@ -37,8 +37,10 @@ export const ProcessConsumableTypeWidget: FunctionComponent<properties> = ({type
     const propsWidgets = properties.map((property:any, index) => {
 
         const id:string = getFromObject(property, ConsumableProperty.id);
+        const noId:boolean = !id;
+        const idNotToDelete = id && !id.startsWith('-');
 
-        if (!id.startsWith('-')) {
+        if (noId || idNotToDelete) {
             return <EditTypePropertySubWidget
                 key={index}
                 index={index}
@@ -73,14 +75,14 @@ export const ProcessConsumableTypeWidget: FunctionComponent<properties> = ({type
 
     return <>
         <button onClick={() => {updateNavigation(retreat(navigation))}}>
-            Назад
+            Отмена
         </button><br/><br/>
 
         <TextInput data={type} field={ConsumableType.type} label={"Тип расходного материала: "}/>
 
         {propsWidgets}
         {addPropButton}
-        <br/>
+        <br/><br/>
         {submitButton}
     </>;
 }

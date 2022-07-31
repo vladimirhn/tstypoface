@@ -31,7 +31,7 @@ export const EditTypePropertySubWidget: FunctionComponent<properties> = ({index,
     }
 
     const removeButton =
-        <button onClick={remove}>удалить</button>
+        <button onClick={remove}>удалить свойство</button>
 
-    return <InlineLayout widgets={[labelWidget, widget, removeButton]}/>
+    return <InlineLayout widgets={[labelWidget, widget, removeButton]} defaultWidth={200}/>
 }
