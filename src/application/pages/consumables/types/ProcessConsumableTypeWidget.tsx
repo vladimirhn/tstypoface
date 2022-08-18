@@ -12,7 +12,7 @@ import validateConsumableType from "./validateConsumableType";
 import Repository from "../../../../library/data/backend/Repository";
 import optimizeConsumableType from "./optimizeConsumableType";
 import ConsumableProperty from "../../../domain/consumables/ConsumableProperty";
-import {getFromObject, setToObject} from "../../../../library/data/dataObject/VanilaObjects";
+import {getFromObject, setToObject} from "../../../../library/data/dataObject/vanila/VanilaObjects";
 
 interface properties {
     navigation:Array<ConsumablesSubPage>;

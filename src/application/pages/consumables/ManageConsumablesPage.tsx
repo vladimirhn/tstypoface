@@ -5,41 +5,49 @@ import React, {FunctionComponent, useState} from 'react';
 import ConsumableType from "../../domain/consumables/ConsumableType";
 import {ChooseConsumableTypeWidget} from "./types/ChooseConsumableTypeWidget";
 import DataObject from "../../../library/data/dataObject/DataObject";
-import {ConsumableItemsWidget} from "./ConsumableItemsWidget";
 import {ConsumablesSubPage} from "./ConsumablesSubPage";
 import {AddNewConsumableTypeWidget} from "./types/AddNewConsumableTypeWidget";
 import proceed from "../../../library/navigation/proceed";
 import {InlineLayout} from "../../../library/widgets/layouts/InlineLayout";
 import {EditConsumableTypeWidget} from "./types/EditConsumableTypeWidget";
+import PrimitiveState from "../../../library/data/dataObject/vanila/PrimitiveState";
+import {ItemsTable} from "./items/ItemsTable";
+import {AddNewItemWidget} from "./items/AddNewItemWidget";
+import {EditItemWidget} from "./items/EditItemWidget";
 
 export const ManageConsumablesPage: FunctionComponent = () => {
 
-    const [navigation, updateNavigation] = useState<Array<ConsumablesSubPage>>([]);
+    const navigationState = useState<Array<ConsumablesSubPage>>([]);
     const [type, setType] = useState<DataObject<ConsumableType> | undefined>(undefined);
+    const selectedItemState = useState<any | undefined>(undefined);
+    const typeLineVisibilityState:PrimitiveState<boolean> = new PrimitiveState<boolean>(useState<boolean>(true));
 
     const chooseConsumableTypeWidget = <ChooseConsumableTypeWidget setter={setType} selectedId={type?.data?.id}/>
-    const addButton = <button onClick={() => {updateNavigation(proceed(navigation, ConsumablesSubPage.ADD_TYPE)) }}>Добавить</button>
-    const editButton = type ? <button onClick={() => {updateNavigation(proceed(navigation, ConsumablesSubPage.EDIT_TYPE)) }}>Изменить</button> : null;
-
-    const consumableItemsWidget = <ConsumableItemsWidget type={type}/>
+    const addButton = <button onClick={() => {navigationState[1](proceed(navigationState[0], ConsumablesSubPage.ADD_TYPE)) }}>Добавить</button>
+    const editButton = type ? <button onClick={() => {navigationState[1](proceed(navigationState[0], ConsumablesSubPage.EDIT_TYPE)) }}>Изменить</button> : null;
 
     const typeLine = [chooseConsumableTypeWidget, editButton, addButton];
 
-    if (navigation.length === 0) {
+    if (navigationState[0].length === 0) {
         return <>
-            <InlineLayout widgets={typeLine}/>
-
-            <div>
-                {consumableItemsWidget}
-            </div>
+            {typeLineVisibilityState.getValue() ? <InlineLayout widgets={typeLine}/> : null}
+            {type ? <ItemsTable type={type} navigationState={navigationState} selectedItemState={selectedItemState}/> : null}
         </>;
 
     } else {
-        switch (navigation[navigation.length-1]) {
+        const last:number = navigationState[0].length - 1;
+        const navigation = navigationState[0];
+        switch (navigation[last]) {
             case ConsumablesSubPage.ADD_TYPE:
-                return <AddNewConsumableTypeWidget navigation={navigation} updateNavigation={updateNavigation}/>;
+                return <AddNewConsumableTypeWidget navigation={navigation} updateNavigation={navigationState[1]}/>;
             case ConsumablesSubPage.EDIT_TYPE:
-                return <EditConsumableTypeWidget navigation={navigation} updateNavigation={updateNavigation} type={type}/>;
+                return <EditConsumableTypeWidget navigation={navigation} updateNavigation={navigationState[1]} type={type}/>;
+            case ConsumablesSubPage.ADD_ITEM:
+                return <AddNewItemWidget type={type} navigationState={navigationState}/>
+            case ConsumablesSubPage.EDIT_ITEM:
+                return <EditItemWidget selectedItem={selectedItemState[0]} navigationState={navigationState}/>
+            default:
+                return null;
         }
     }
 }

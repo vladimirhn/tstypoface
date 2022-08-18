@@ -5,6 +5,9 @@ import DomainClass from "../../library/reflection/DomainClass";
 import MoneyMovement from "./enterprises/MoneyMovement";
 import ConsumableType from "./consumables/ConsumableType";
 import ConsumableProperty from "./consumables/ConsumableProperty";
+import ConsumablesView from "./consumables/ConsumablesView";
+import ConsumableItem from "./consumables/ConsumableItem";
+import ConsumablePropertyValue from "./consumables/ConsumablePropertyValue";
 
 export default class Domain {
 
@@ -16,6 +19,9 @@ export default class Domain {
             [MoneyMovement, new MoneyMovement()],
             [ConsumableType, new ConsumableType()],
             [ConsumableProperty, new ConsumableProperty()],
+            [ConsumablesView, new ConsumablesView()],
+            [ConsumableItem, new ConsumableItem()],
+            [ConsumablePropertyValue, new ConsumablePropertyValue()],
         ]
     ));
 

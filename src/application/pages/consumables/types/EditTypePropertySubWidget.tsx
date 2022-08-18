@@ -1,7 +1,7 @@
 import Consumer from "../../../../library/functions/interfaces/Consumer";
 import React, {FunctionComponent} from "react";
 import {InlineLayout} from "../../../../library/widgets/layouts/InlineLayout";
-import {getFromObject, setToObject} from "../../../../library/data/dataObject/VanilaObjects";
+import {getFromObject, setToObject} from "../../../../library/data/dataObject/vanila/VanilaObjects";
 import ConsumableProperty from "../../../domain/consumables/ConsumableProperty";
 
 interface properties {
