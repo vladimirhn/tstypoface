@@ -28,7 +28,7 @@ export const ItemsTable: FunctionComponent<properties> = ({type, navigationState
 
     useEffect(() => {
         Repository.empty(ConsumablesView).initialFetchFiltered(DataObject.withField(ConsumablesView.typeId, type?.data?.id), setRepository);
-    }, [type])
+    }, [type, selectedItemState[0]])
 
     const columnsMap = repository.dataSet.getFirst()?.data?.getValueByField(ConsumablesView.propertyIds);
 
@@ -58,7 +58,8 @@ export const ItemsTable: FunctionComponent<properties> = ({type, navigationState
             )
         }
 
-        const isSelected:boolean = getFromObject(item, ConsumablesView.itemId) === getFromObject(selectedItemState[0], ConsumablesView.itemId);
+        const itemId = getFromObject(item, ConsumablesView.itemId);
+        const isSelected:boolean = itemId && itemId  === getFromObject(selectedItemState[0], ConsumablesView.itemId);
 
         const selectItem = () => selectedItemState[1](!isSelected ? item : undefined);
         const row = <TableRow lastCell={true} key={itemIndex} cells={rowCells} onClick={selectItem} isSelected={isSelected}/>
@@ -67,7 +68,7 @@ export const ItemsTable: FunctionComponent<properties> = ({type, navigationState
     });
 
 
-    const managementPanel = <ItemsTableManagementPanel selectedItemId={selectedItemState[0]} navigationState={navigationState}/>
+    const managementPanel = <ItemsTableManagementPanel selectedItemState={selectedItemState} navigationState={navigationState}/>
 
     return <TableWithPanel lastCell={true} header={header} rows={rows} topPanel={managementPanel}/>
 }

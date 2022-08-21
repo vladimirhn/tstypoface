@@ -6,7 +6,7 @@ import {ComboBoxFromRepository} from "../../../../library/widgets/fieldInputs/co
 import DataObject from "../../../../library/data/dataObject/DataObject";
 
 interface properties {
-    setter: Consumer<DataObject<any>>;
+    setter: Consumer<DataObject<ConsumableType>>;
     selectedId?:string;
     consumableTypesRepository:Repository<any>;
 }
