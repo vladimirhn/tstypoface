@@ -31,7 +31,7 @@ export const ProcessItemWidget: FunctionComponent<properties> = ({type, itemStat
         setter={(newVal) => {itemState.setValue(ConsumablesView.itemName, newVal)}}
     />
 
-    const properties:JSX.Element[] = [];
+    const editPropertiesSubWidget:JSX.Element[] = [];
     let i = 0;
 
     for (let field in propertiesMapObject) {
@@ -43,7 +43,6 @@ export const ProcessItemWidget: FunctionComponent<properties> = ({type, itemStat
             setter={
                 (newVal) => {
                     propsState
-                        .setValue(field, ConsumablePropertyValue.itemId, itemState.getValue(ConsumableItem.id))
                         .setValue(field, ConsumablePropertyValue.propertyId, field)
                         .setValue(field, ConsumablePropertyValue.propertyValue, newVal)
                         .runSetter();
@@ -51,12 +50,12 @@ export const ProcessItemWidget: FunctionComponent<properties> = ({type, itemStat
             }
         />
 
-        properties.push(editPropSubWidget)
+        editPropertiesSubWidget.push(editPropSubWidget)
     }
 
 
     return <div>
         {editNameSubWidget}
-        {properties}
+        {editPropertiesSubWidget}
     </div>
 }

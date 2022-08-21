@@ -45,7 +45,7 @@ export const ManageConsumablesPage: FunctionComponent = () => {
             case ConsumablesSubPage.ADD_ITEM:
                 return <AddNewItemWidget type={type} navigationState={navigationState}/>
             case ConsumablesSubPage.EDIT_ITEM:
-                return <EditItemWidget selectedItem={selectedItemState[0]} navigationState={navigationState}/>
+                return <EditItemWidget type={type} selectedItem={selectedItemState[0]} navigationState={navigationState}/>
             default:
                 return null;
         }
