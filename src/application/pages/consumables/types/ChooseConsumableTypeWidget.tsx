@@ -8,19 +8,11 @@ import DataObject from "../../../../library/data/dataObject/DataObject";
 interface properties {
     setter: Consumer<DataObject<any>>;
     selectedId?:string;
+    consumableTypesRepository:Repository<any>;
 }
-export const ChooseConsumableTypeWidget: FunctionComponent<properties> = ({setter, selectedId}) => {
+export const ChooseConsumableTypeWidget: FunctionComponent<properties> = ({setter, selectedId, consumableTypesRepository}) => {
 
-    const [consumableTypesRepository, setRepository] = useState<Repository<any>>(Repository.empty(ConsumableType));
-
-    let updating = (repo:Repository<any>) => {
-        if (selectedId) repo.dataSet.setSelectedById(selectedId);
-        setRepository(repo);
-    }
-
-    useEffect(() => {
-        consumableTypesRepository.initialFetchAll(updating);
-    }, [])
+    if (selectedId) consumableTypesRepository.dataSet.setSelectedById(selectedId);
 
     return <>
         <ComboBoxFromRepository

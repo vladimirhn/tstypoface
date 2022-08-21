@@ -1,7 +1,7 @@
 import '../../../library/appearance/layouts/BasicAppLayout/pages.css';
 import '../../../library/appearance/themes/common/size.css'
 
-import React, {FunctionComponent, useState} from 'react';
+import React, {FunctionComponent, useEffect, useState} from 'react';
 import ConsumableType from "../../domain/consumables/ConsumableType";
 import {ChooseConsumableTypeWidget} from "./types/ChooseConsumableTypeWidget";
 import DataObject from "../../../library/data/dataObject/DataObject";
@@ -14,15 +14,22 @@ import PrimitiveState from "../../../library/data/dataObject/vanila/PrimitiveSta
 import {ItemsTable} from "./items/ItemsTable";
 import {AddNewItemWidget} from "./items/AddNewItemWidget";
 import {EditItemWidget} from "./items/EditItemWidget";
+import Repository from "../../../library/data/backend/Repository";
 
 export const ManageConsumablesPage: FunctionComponent = () => {
 
     const navigationState = useState<Array<ConsumablesSubPage>>([]);
     const [type, setType] = useState<DataObject<ConsumableType> | undefined>(undefined);
+    const [consumableTypesRepository, setRepository] = useState<Repository<any>>(Repository.empty(ConsumableType));
+
+    useEffect(() => {
+        consumableTypesRepository.initialFetchAll(setRepository);
+    }, [])
+
     const selectedItemState = useState<any | undefined>(undefined);
     const typeLineVisibilityState:PrimitiveState<boolean> = new PrimitiveState<boolean>(useState<boolean>(true));
 
-    const chooseConsumableTypeWidget = <ChooseConsumableTypeWidget setter={setType} selectedId={type?.data?.id}/>
+    const chooseConsumableTypeWidget = <ChooseConsumableTypeWidget setter={setType} selectedId={type?.data?.id} consumableTypesRepository={consumableTypesRepository}/>
     const addButton = <button onClick={() => {navigationState[1](proceed(navigationState[0], ConsumablesSubPage.ADD_TYPE)) }}>Добавить</button>
     const editButton = type ? <button onClick={() => {navigationState[1](proceed(navigationState[0], ConsumablesSubPage.EDIT_TYPE)) }}>Изменить</button> : null;
 
