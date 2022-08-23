@@ -18,9 +18,10 @@ interface properties {
     navigation:Array<ConsumablesSubPage>;
     updateNavigation: React.Dispatch<React.SetStateAction<ConsumablesSubPage[]>>;
     type:Data<ConsumableType> | undefined;
+    repository:Repository<ConsumableType>;
 }
 
-export const ProcessConsumableTypeWidget: FunctionComponent<properties> = ({type, navigation, updateNavigation}) => {
+export const ProcessConsumableTypeWidget: FunctionComponent<properties> = ({type, repository, navigation, updateNavigation}) => {
 
     if (!type) {
         console.log("No ConsumableType passed to ProcessConsumableTypeWidget")
@@ -62,9 +63,9 @@ export const ProcessConsumableTypeWidget: FunctionComponent<properties> = ({type
 
     const submitMethod = () => {
         if (type.id) {
-            Repository.empty(ConsumableType).updateData(optimizeConsumableType(type));
+            repository.updateData(optimizeConsumableType(type));
         } else {
-            Repository.empty(ConsumableType).insertData(optimizeConsumableType(type));
+            repository.insertData(optimizeConsumableType(type));
         }
         updateNavigation(retreat(navigation))
     }

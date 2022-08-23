@@ -6,13 +6,15 @@ import ConsumableType from "../../../domain/consumables/ConsumableType";
 import {ConsumablesSubPage} from "../ConsumablesSubPage";
 import Data from "../../../../library/data/dataObject/Data";
 import {ProcessConsumableTypeWidget} from "./ProcessConsumableTypeWidget";
+import Repository from "../../../../library/data/backend/Repository";
 
 interface properties {
     navigation:Array<ConsumablesSubPage>;
     updateNavigation: React.Dispatch<React.SetStateAction<ConsumablesSubPage[]>>;
+    repository:Repository<ConsumableType>;
 }
 
-export const AddNewConsumableTypeWidget: FunctionComponent<properties> = ({navigation, updateNavigation}) => {
+export const AddNewConsumableTypeWidget: FunctionComponent<properties> = ({repository, navigation, updateNavigation}) => {
 
     const [newType, updateNewType] = useState<Data<ConsumableType>>(Data.pure);
     useEffect(() => {
@@ -20,5 +22,5 @@ export const AddNewConsumableTypeWidget: FunctionComponent<properties> = ({navig
         newType.setValueByField(ConsumableType.properties, []);
         }, [])
 
-    return <ProcessConsumableTypeWidget navigation={navigation} updateNavigation={updateNavigation} type={newType}/>
+    return <ProcessConsumableTypeWidget navigation={navigation} updateNavigation={updateNavigation} type={newType} repository={repository}/>
 }

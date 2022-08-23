@@ -18,7 +18,7 @@ export const ItemsTableManagementPanel: FunctionComponent<properties> = ({select
     const selectedItem = selectedItemState[0];
 
     const addButton = <button onClick={() => {navigationState[1](proceed(navigationState[0], ConsumablesSubPage.ADD_ITEM)) }}>создать расходник</button>
-    const editButton = <button onClick={() => {navigationState[1](proceed(navigationState[0], ConsumablesSubPage.EDIT_ITEM)) }}>изменить расходник</button>;
+    const editButton = <button onClick={() => {navigationState[1](proceed(navigationState[0], ConsumablesSubPage.EDIT_ITEM)) }}>редактировать расходник</button>;
 
     const deleteEntry = () => {
         Repository.empty(ConsumableItem).delete(getFromObject(selectedItem, ConsumablesView.itemId));

@@ -41,8 +41,8 @@ export const AddNewItemWidget: FunctionComponent<properties> = ({type, navigatio
     const saveButton = <button onClick={save} disabled={!itemState.getValue(ConsumablesView.itemName)}>Сохранить</button>
     return <div>
 
-        <ProcessItemWidget type={type} itemState={itemState} propsState={propsState}/>
         {cancelButton}
+        <ProcessItemWidget type={type} itemState={itemState} propsState={propsState}/>
         {saveButton}
     </div>
 }

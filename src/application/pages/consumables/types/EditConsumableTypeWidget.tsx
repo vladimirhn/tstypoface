@@ -14,9 +14,10 @@ interface properties {
     navigation:Array<ConsumablesSubPage>;
     updateNavigation: React.Dispatch<React.SetStateAction<ConsumablesSubPage[]>>;
     type:DataObject<ConsumableType> | undefined;
+    repository:Repository<ConsumableType>;
 }
 
-export const EditConsumableTypeWidget: FunctionComponent<properties> = ({type, navigation, updateNavigation}) => {
+export const EditConsumableTypeWidget: FunctionComponent<properties> = ({type, repository, navigation, updateNavigation}) => {
 
     const [typeData, setTypeData] = useState<Data<ConsumableType> | undefined>(type?.data);
 
@@ -29,5 +30,5 @@ export const EditConsumableTypeWidget: FunctionComponent<properties> = ({type, n
         Repository.empty(ConsumableProperty).simplyFetchFiltered(DataObject.withField(ConsumableProperty.typeId, type?.data?.id), propSetter);
     }, [])
 
-    return <ProcessConsumableTypeWidget navigation={navigation} updateNavigation={updateNavigation} type={typeData}/>
+    return <ProcessConsumableTypeWidget navigation={navigation} updateNavigation={updateNavigation} type={typeData} repository={repository}/>
 }

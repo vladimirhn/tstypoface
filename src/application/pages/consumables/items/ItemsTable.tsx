@@ -20,15 +20,16 @@ interface properties {
     type:DataObject<ConsumableType>;
     navigationState:[Array<ConsumablesSubPage>, React.Dispatch<React.SetStateAction<ConsumablesSubPage[]>>];
     selectedItemState:[any | undefined, Dispatch<SetStateAction<any | undefined>>];
+    typeRepo:Repository<ConsumableType>
 }
 
-export const ItemsTable: FunctionComponent<properties> = ({type, navigationState, selectedItemState}) => {
+export const ItemsTable: FunctionComponent<properties> = ({type, typeRepo, navigationState, selectedItemState}) => {
 
     const [repository, setRepository] = useState<Repository<any>>(Repository.empty(ConsumablesView));
 
     useEffect(() => {
         Repository.empty(ConsumablesView).initialFetchFiltered(DataObject.withField(ConsumablesView.typeId, type?.data?.id), setRepository);
-    }, [type, selectedItemState[0]])
+    }, [type, selectedItemState[0], typeRepo])
 
     const columnsMap = repository.dataSet.getFirst()?.data?.getValueByField(ConsumablesView.propertyIds);
 

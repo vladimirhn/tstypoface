@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useEffect, useState} from "react";
+import React, {FunctionComponent} from "react";
 import Repository from "../../../../library/data/backend/Repository";
 import ConsumableType from "../../../domain/consumables/ConsumableType";
 import Consumer from "../../../../library/functions/interfaces/Consumer";
@@ -18,7 +18,7 @@ export const ChooseConsumableTypeWidget: FunctionComponent<properties> = ({sette
         <ComboBoxFromRepository
             consumeChoice={setter}
             isInline={true}
-            label={"Выбрать"}
+            label={"Выбрать тип: "}
             repository={consumableTypesRepository}
             hideIfEmpty={true}
         />

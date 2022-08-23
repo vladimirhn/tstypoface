@@ -30,26 +30,31 @@ export const ManageConsumablesPage: FunctionComponent = () => {
         consumableTypesRepository.initialFetchAll(setRepository);
     }, [])
 
+    const deleteType = () => {
+        consumableTypesRepository.delete(selectedType?.data?.getValueByField(ConsumableType.id));
+        updateSelectedType(undefined);
+    }
+
     const chooseConsumableTypeWidget = <ChooseConsumableTypeWidget setter={updateSelectedType} selectedId={selectedType?.data?.id} consumableTypesRepository={consumableTypesRepository}/>
     const addButton = <button onClick={() => {navigationState[1](proceed(navigationState[0], ConsumablesSubPage.ADD_TYPE)) }}>Добавить</button>
     const editButton = selectedType ? <button onClick={() => {navigationState[1](proceed(navigationState[0], ConsumablesSubPage.EDIT_TYPE)) }}>Изменить</button> : null;
+    const deleteButton = selectedType ? <button onClick={deleteType}>Удалить</button> : null;
 
-    const typeLine = [chooseConsumableTypeWidget, addButton, editButton];
+    const typeLine = [chooseConsumableTypeWidget, addButton, editButton, deleteButton];
 
     if (navigationState[0].length === 0) {
         return <>
             <InlineLayout widgets={typeLine}/>
-            {selectedType ? <ItemsTable type={selectedType} navigationState={navigationState} selectedItemState={selectedItemState}/> : null}
+            {selectedType ? <ItemsTable type={selectedType} typeRepo={consumableTypesRepository} navigationState={navigationState} selectedItemState={selectedItemState}/> : null}
         </>;
 
     } else {
         const last:number = navigationState[0].length - 1;
-        const navigation = navigationState[0];
-        switch (navigation[last]) {
+        switch (navigationState[0][last]) {
             case ConsumablesSubPage.ADD_TYPE:
-                return <AddNewConsumableTypeWidget navigation={navigation} updateNavigation={navigationState[1]}/>;
+                return <AddNewConsumableTypeWidget repository={consumableTypesRepository} navigation={navigationState[0]} updateNavigation={navigationState[1]}/>;
             case ConsumablesSubPage.EDIT_TYPE:
-                return <EditConsumableTypeWidget navigation={navigation} updateNavigation={navigationState[1]} type={selectedType}/>;
+                return <EditConsumableTypeWidget repository={consumableTypesRepository} navigation={navigationState[0]} updateNavigation={navigationState[1]} type={selectedType}/>;
             case ConsumablesSubPage.ADD_ITEM:
                 return <AddNewItemWidget type={selectedType} navigationState={navigationState}/>
             case ConsumablesSubPage.EDIT_ITEM:
