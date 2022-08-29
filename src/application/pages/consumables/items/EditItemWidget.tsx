@@ -17,11 +17,13 @@ import ConsumablePropertyValue from "../../../domain/consumables/ConsumablePrope
 
 interface properties {
     type:DataObject<ConsumableType> | undefined;
-    selectedItem:any | undefined;
+    selectedItemState:[any | undefined, React.Dispatch<React.SetStateAction<any | undefined>>];
     navigationState:[Array<ConsumablesSubPage>, React.Dispatch<React.SetStateAction<ConsumablesSubPage[]>>];
 }
 
-export const EditItemWidget: FunctionComponent<properties> = ({type, selectedItem, navigationState}) => {
+export const EditItemWidget: FunctionComponent<properties> = ({type, selectedItemState, navigationState}) => {
+
+    const selectedItem:any | undefined = selectedItemState[0];
 
     const itemState:StateElement<any> = new VanillaStateElement<any>(useState<any>(selectedItem || {}));
     const propsState:VanillaStateMap<Map<any,any>> = new VanillaStateMap<Map<any,any>>(useState<any>(new Map()));
@@ -50,11 +52,17 @@ export const EditItemWidget: FunctionComponent<properties> = ({type, selectedIte
         const item:{} = {};
         setToObject(item, ConsumableItem.id, getFromObject(itemState.getObject(), ConsumablesView.itemId))
         setToObject(item, ConsumableItem.item, getFromObject(itemState.getObject(), ConsumablesView.itemName));
+        setToObject(item, ConsumableItem.packageCapacity, getFromObject(itemState.getObject(), ConsumablesView.packageCapacity));
         setToObject(item, ConsumableItem.typeId, type.data?.id);
 
         setToObject(item, ConsumableItem.propertyValues, propsState.getArray());
         Repository.empty(ConsumableItem).updateObject(item);
-        setTimeout(()=>{navigationState[1](retreat(navigationState[0]))}, BackendInteraction.WAIT_REQUEST);
+
+        const afterSave = () => {
+            selectedItemState[1](undefined);
+            navigationState[1](retreat(navigationState[0]));
+        }
+        setTimeout(afterSave, BackendInteraction.WAIT_REQUEST);
 
     }
 

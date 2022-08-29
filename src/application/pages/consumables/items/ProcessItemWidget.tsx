@@ -8,6 +8,7 @@ import Repository from "../../../../library/data/backend/Repository";
 import VanillaStateMap from "../../../../library/data/dataObject/vanila/VanillaStateMap";
 import ConsumablePropertyValue from "../../../domain/consumables/ConsumablePropertyValue";
 import ConsumableItem from "../../../domain/consumables/ConsumableItem";
+import {SimpleNumericInput} from "../../../../library/widgets/fieldInputs/SimpleNumericInput";
 
 interface properties {
     type:DataObject<ConsumableType>;
@@ -29,6 +30,12 @@ export const ProcessItemWidget: FunctionComponent<properties> = ({type, itemStat
         label={"Название"}
         value={itemState.getValue(ConsumablesView.itemName)}
         setter={(newVal) => {itemState.setValue(ConsumablesView.itemName, newVal)}}
+    />
+
+    const editCapacitySubWidget = <SimpleNumericInput
+        label={"Ст. размер пачки"}
+        value={itemState.getValue(ConsumablesView.packageCapacity)}
+        setter={(newVal) => {itemState.setValue(ConsumablesView.packageCapacity, newVal)}}
     />
 
     const editPropertiesSubWidget:JSX.Element[] = [];
@@ -56,6 +63,7 @@ export const ProcessItemWidget: FunctionComponent<properties> = ({type, itemStat
 
     return <div>
         {editNameSubWidget}
+        {editCapacitySubWidget}
         {editPropertiesSubWidget}
     </div>
 }
