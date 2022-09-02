@@ -8,6 +8,7 @@ import ConsumableProperty from "./consumables/ConsumableProperty";
 import ConsumablesView from "./consumables/ConsumablesView";
 import ConsumableItem from "./consumables/ConsumableItem";
 import ConsumablePropertyValue from "./consumables/ConsumablePropertyValue";
+import PurchasingConsumables from "./purchasing/PurchasingConsumables";
 
 export default class Domain {
 
@@ -22,6 +23,7 @@ export default class Domain {
             [ConsumablesView, new ConsumablesView()],
             [ConsumableItem, new ConsumableItem()],
             [ConsumablePropertyValue, new ConsumablePropertyValue()],
+            [PurchasingConsumables, new PurchasingConsumables()],
         ]
     ));
 

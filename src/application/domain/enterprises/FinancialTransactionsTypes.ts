@@ -1,9 +1,9 @@
 
-const OrderStatuses = {
+const FinancialTransactionsTypes = {
 
     BUYING: "закупка",
     SELLING: "продажа",
     MANUAL: "вручную"
 }
 
-export default OrderStatuses;
+export default FinancialTransactionsTypes;
