@@ -11,11 +11,12 @@ export default class PurchasingConsumables extends DomainClass<PurchasingConsuma
     static readonly path = Paths.purchasingConsumables;
 
     static readonly id =              ObjectFieldDescription.label("id").setVisible(false);
+    static readonly purchasingDate =  ObjectFieldDescription.label("дата закупки").withType(DataType.DATE).setFilter(true);
     static readonly consumableId =    ObjectFieldDescription.label("расходник").withForeignModel(ConsumableItem).withType(DataType.FOREIGN_ID).setVisible(false).setFilter(true);
     static readonly consumableItem =  ObjectFieldDescription.label("расходник").withForeignModel(ConsumableItem).withType(DataType.FOREIGN_OBJECT);
     static readonly price =           ObjectFieldDescription.label("цена").withType(DataType.NUMERIC);
     static readonly amount =          ObjectFieldDescription.label("количество").withType(DataType.NUMERIC);
-    static readonly purchasingDate =  ObjectFieldDescription.label("дата закупки").withType(DataType.DATE).setFilter(true);
+    static readonly capacity =        ObjectFieldDescription.label("кол-во в упаковке").withType(DataType.NUMERIC);
     static readonly legalEntityId =   ObjectFieldDescription.label("legalEntityId").setVisible(false);
     // static readonly legalEntity = ObjectFieldDescription.label("контрагент").withForeignModel(ConsumableItem).withType(DataType.OBJECT);
 

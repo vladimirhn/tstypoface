@@ -22,6 +22,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "no-useless-constructor": "off",
+  "@typescript-eslint/no-useless-constructor": ["error"],
   "eslintConfig": {
     "extends": [
       "react-app",

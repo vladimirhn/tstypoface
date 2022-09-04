@@ -7,8 +7,7 @@ import ConsumableType from "../../../domain/consumables/ConsumableType";
 import Repository from "../../../../library/data/backend/Repository";
 import VanillaStateMap from "../../../../library/data/dataObject/vanila/VanillaStateMap";
 import ConsumablePropertyValue from "../../../domain/consumables/ConsumablePropertyValue";
-import ConsumableItem from "../../../domain/consumables/ConsumableItem";
-import {SimpleNumericInput} from "../../../../library/widgets/fieldInputs/SimpleNumericInput";
+import {SimpleNumericInput} from "../../../../library/widgets/fieldInputs/numeric/SimpleNumericInput";
 
 interface properties {
     type:DataObject<ConsumableType>;

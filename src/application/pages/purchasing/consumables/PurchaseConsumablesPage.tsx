@@ -1,11 +1,11 @@
 import '../../../../library/appearance/layouts/BasicAppLayout/pages.css';
 
 import React, {FunctionComponent, useEffect, useState} from 'react';
-import {InputNewPurchaseSimpleForm} from "./inputnewpurchasesimpleform/InputNewPurchaseSimpleForm";
 import Repository from "../../../../library/data/backend/Repository";
 import TableConfig from "../../../../library/widgets/tables/dataSetTable/TableConfig";
 import {DataSetTable} from "../../../../library/widgets/tables/dataSetTable/DataSetTable";
 import PurchasingConsumables from "../../../domain/purchasing/PurchasingConsumables";
+import {InsertPurchaseConsumablesWidget} from "./inputnewpurchasesimpleform/InsertPurchaseConsumablesWidget";
 
 export const PurchaseConsumablesPage: FunctionComponent = () => {
 
@@ -13,6 +13,7 @@ export const PurchaseConsumablesPage: FunctionComponent = () => {
 
     useEffect(() => {
         purchasingRepository.initialFetchAll(setRepository);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -20,7 +21,7 @@ export const PurchaseConsumablesPage: FunctionComponent = () => {
 
             <h1>Закупка расходных материалов</h1>
 
-            <InputNewPurchaseSimpleForm repository={purchasingRepository}/>
+            <InsertPurchaseConsumablesWidget repository={purchasingRepository}/>
 
             <DataSetTable
                 repository={purchasingRepository}
