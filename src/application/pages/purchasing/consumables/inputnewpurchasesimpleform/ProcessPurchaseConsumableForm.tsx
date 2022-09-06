@@ -72,7 +72,7 @@ export const ProcessPurchaseConsumableForm: FunctionComponent<properties>= ({   
     />
 
     return <div className={"widget"}>
-        <p><b>Добавить новый расходник</b></p>
+        <b>{exampleObjectState.getDataObject().data?.id ? "Правка" : "Добавить"}</b><br/>
 
         {dateInputLine}
 
