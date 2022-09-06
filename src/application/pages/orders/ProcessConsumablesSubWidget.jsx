@@ -5,10 +5,10 @@ import dataUpdateEffect from "../../../library/data/dataSet/events/DataUpdateEff
 import OrderConsumables from "../../domain/orders/OrderConsumables";
 import ObjectFieldProcessor from "../../../library/data/dataObject/ObjectFieldProcessor";
 import emptyFunction from "../../../library/functions/EmptyFunction";
-import DataSetTable from "../../../library/widgets/tables/dataSetTable/DataSetTable";
+import DataSetTable from "../../../library/visual/widgets/tables/dataSetTable/DataSetTableWidget";
 import ChooseFromTablePopupWidget
-    from "../../../library/widgets/fieldInputs/chooseFromTablePopup/ChooseFromTablePopupWidget";
-import NumericInput from "../../../library/widgets/fieldInputs/NumericInput";
+    from "../../../library/visual/widgets/fieldInputs/chooseFromTablePopup/ChooseFromTablePopupWidget";
+import NumericInput from "../../../library/visual/widgets/fieldInputs/NumericInput";
 
 export default function ProcessConsumablesSubWidget({dataSet, toggleVisibilityFunct}) {
 

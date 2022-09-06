@@ -1,6 +1,6 @@
 import React, {useReducer, useState} from 'react';
 import OrderDetailsSimpleWidget from "./OrderDetailsSimpleWidget";
-import Button from "../../../library/widgets/buttons/Button";
+import Button from "../../../library/visual/widgets/buttons/Button";
 import Order from "../../domain/orders/Order";
 
 let orderWithDefaults = () => {

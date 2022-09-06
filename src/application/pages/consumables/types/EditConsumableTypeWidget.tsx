@@ -1,5 +1,5 @@
-import '../../../../library/appearance/layouts/BasicAppLayout/pages.css';
-import '../../../../library/appearance/themes/common/size.css'
+import '../../../../library/visual/appearance/layouts/BasicAppLayout/pages.css';
+import '../../../../library/visual/appearance/themes/common/size.css'
 
 import React, {useEffect, useState, FunctionComponent} from 'react';
 import ConsumableType from "../../../domain/consumables/ConsumableType";

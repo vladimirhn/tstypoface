@@ -1,5 +1,5 @@
-import '../../../library/appearance/layouts/BasicAppLayout/pages.css';
-import '../../../library/appearance/themes/common/size.css'
+import '../../../library/visual/appearance/layouts/BasicAppLayout/pages.css';
+import '../../../library/visual/appearance/themes/common/size.css'
 
 import React, {FunctionComponent, useEffect, useState} from 'react';
 import ConsumableType from "../../domain/consumables/ConsumableType";
@@ -8,7 +8,7 @@ import DataObject from "../../../library/data/dataObject/DataObject";
 import {ConsumablesSubPage} from "./ConsumablesSubPage";
 import {AddNewConsumableTypeWidget} from "./types/AddNewConsumableTypeWidget";
 import proceed from "../../../library/navigation/proceed";
-import {InlineLayout} from "../../../library/widgets/layouts/InlineLayout";
+import {InlineLayout} from "../../../library/visual/widgets/layouts/InlineLayout";
 import {EditConsumableTypeWidget} from "./types/EditConsumableTypeWidget";
 import {ItemsTable} from "./items/ItemsTable";
 import {AddNewItemWidget} from "./items/AddNewItemWidget";

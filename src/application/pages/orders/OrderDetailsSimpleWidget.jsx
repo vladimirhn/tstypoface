@@ -1,13 +1,13 @@
-import '../../../library/appearance/layouts/BasicAppLayout/pages.css';
+import '../../../library/visual/appearance/layouts/BasicAppLayout/pages.css';
 
 import React from 'react';
-import NumericInput from "../../../library/widgets/fieldInputs/NumericInput";
+import NumericInput from "../../../library/visual/widgets/fieldInputs/NumericInput";
 import Order from "../../domain/orders/Order";
 import ChooseFromTablePopupWidget
-    from "../../../library/widgets/fieldInputs/chooseFromTablePopup/ChooseFromTablePopupWidget";
-import DateInput from "../../../library/widgets/fieldInputs/DateInput";
-import ComboBoxFromForeign from "../../../library/widgets/fieldInputs/comboboxes/comboBoxFromForeign/ComboBoxFromForeign";
-import TextAreaInput from "../../../library/widgets/fieldInputs/TextAreaInput";
+    from "../../../library/visual/widgets/fieldInputs/chooseFromTablePopup/ChooseFromTablePopupWidget";
+import DateInput from "../../../library/visual/widgets/fieldInputs/DateInput";
+import ComboBoxFromForeign from "../../../library/visual/widgets/fieldInputs/comboboxes/comboBoxFromForeign/ComboBoxFromForeign";
+import TextAreaInput from "../../../library/visual/widgets/fieldInputs/TextAreaInput";
 import ObjectFieldProcessor from "../../../library/data/dataObject/ObjectFieldProcessor";
 
 export default function OrderDetailsSimpleWidget({order, redrawFunct}) {

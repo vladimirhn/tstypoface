@@ -1,16 +1,16 @@
 import {FunctionComponent, useEffect, useState} from "react";
-import Repository from "../../../../../library/data/backend/Repository";
 import PurchasingConsumables from "../../../../domain/purchasing/PurchasingConsumables";
-import {ProcessPurchaseConsumableWidget} from "./ProcessPurchaseConsumableWidget";
+import {ProcessPurchaseConsumableForm} from "./ProcessPurchaseConsumableForm";
 import DataObjectState from "../../../../../library/data/dataObject/DataObjectState";
 import DataObject from "../../../../../library/data/dataObject/DataObject";
 import Dates from "../../../../../library/tools/Dates";
+import SharedServices from "../../../../../library/SharedServices";
 
 interface properties {
-    repository:Repository<PurchasingConsumables>;
+    sharedServices:SharedServices;
 }
 
-export const InsertPurchaseConsumablesWidget: FunctionComponent<properties>= ({repository}) => {
+export const InsertPurchaseConsumablesWidget: FunctionComponent<properties>= ({sharedServices}) => {
 
     const exampleObjectState:DataObjectState = new DataObjectState(useState<DataObject<PurchasingConsumables>>(DataObject.empty));
     useEffect(() => {
@@ -19,11 +19,12 @@ export const InsertPurchaseConsumablesWidget: FunctionComponent<properties>= ({r
     }, [])
 
     const save = () => {
-        repository.insert(exampleObjectState.getDataObject());
+        sharedServices.repository?.insert(exampleObjectState.getDataObject());
         exampleObjectState.eraseObject();
+        sharedServices.navigation?.home();
     }
 
-    return <ProcessPurchaseConsumableWidget
+    return <ProcessPurchaseConsumableForm
         exampleObjectState={exampleObjectState}
         applyButtonLabel={"сохранить"}
         applyButtonFunct={save}

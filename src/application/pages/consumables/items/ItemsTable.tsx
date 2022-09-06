@@ -1,18 +1,18 @@
-import '../../../../library/appearance/layouts/BasicAppLayout/pages.css';
-import '../../../../library/appearance/themes/common/size.css'
+import '../../../../library/visual/appearance/layouts/BasicAppLayout/pages.css';
+import '../../../../library/visual/appearance/themes/common/size.css'
 
 import React, {Dispatch, FunctionComponent, SetStateAction, useEffect, useState} from 'react';
 import ConsumableType from "../../../domain/consumables/ConsumableType";
 import DataObject from "../../../../library/data/dataObject/DataObject";
 import Repository from "../../../../library/data/backend/Repository";
 import ConsumablesView from "../../../domain/consumables/ConsumablesView";
-import {TableWithPanel} from "../../../../library/widgets/tables/abstractTable/TableWithPanel";
-import {TableHeaderCell} from "../../../../library/widgets/tables/abstractTable/TableHeaderCell";
-import {TableHeaderRow} from "../../../../library/widgets/tables/abstractTable/TableHeaderRow";
+import {TableWithPanel} from "../../../../library/visual/widgets/tables/abstractTable/TableWithPanel";
+import {TableHeaderCell} from "../../../../library/visual/widgets/tables/abstractTable/TableHeaderCell";
+import {TableHeaderRow} from "../../../../library/visual/widgets/tables/abstractTable/TableHeaderRow";
 import {getFromObject} from "../../../../library/data/dataObject/vanila/VanilaObjects";
-import {TableCell} from "../../../../library/widgets/tables/abstractTable/TableCell";
+import {TableCell} from "../../../../library/visual/widgets/tables/abstractTable/TableCell";
 import findByFieldInArray from "../../../../library/tools/arrays/findByFieldInArray";
-import {TableRow} from "../../../../library/widgets/tables/abstractTable/TableRow";
+import {TableRow} from "../../../../library/visual/widgets/tables/abstractTable/TableRow";
 import {ItemsTableManagementPanel} from "./ItemsTableManagementPanel";
 import {ConsumablesSubPage} from "../ConsumablesSubPage";
 

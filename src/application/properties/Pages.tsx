@@ -1,4 +1,4 @@
-import Page from "../../library/pages/Page";
+import Page from "../../library/visual/pages/Page";
 
 
 import CreditsPage from "../pages/CreditsPage";

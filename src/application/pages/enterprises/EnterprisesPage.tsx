@@ -1,11 +1,11 @@
-import '../../../library/appearance/layouts/BasicAppLayout/pages.css';
-import '../../../library/appearance/themes/common/size.css'
+import '../../../library/visual/appearance/layouts/BasicAppLayout/pages.css';
+import '../../../library/visual/appearance/themes/common/size.css'
 
 import React, {useEffect, useState, FunctionComponent, useReducer} from 'react';
 import FinancialTransaction from "../../domain/enterprises/FinancialTransaction";
 import DataSet from "../../../library/data/dataSet/DataSet";
-import TableConfig from "../../../library/widgets/tables/dataSetTable/TableConfig";
-import {DataSetTable} from "../../../library/widgets/tables/dataSetTable/DataSetTable";
+import TableConfig from "../../../library/visual/widgets/tables/dataSetTable/TableConfig";
+import {DataSetTableWidget} from "../../../library/visual/widgets/tables/dataSetTable/DataSetTableWidget";
 import Repository from "../../../library/data/backend/Repository";
 
 export const EnterprisesPage: FunctionComponent = () => {
@@ -23,7 +23,7 @@ export const EnterprisesPage: FunctionComponent = () => {
 
             <br/><br/>
 
-            <DataSetTable
+            <DataSetTableWidget
                 repository={finTransRepository}
                 config={new TableConfig().noDelete().inlineFilters()}
             />

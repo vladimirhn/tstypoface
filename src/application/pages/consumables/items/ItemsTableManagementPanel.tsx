@@ -1,7 +1,7 @@
 import React, {Dispatch, FunctionComponent, SetStateAction} from 'react';
 import proceed from "../../../../library/navigation/proceed";
 import {ConsumablesSubPage} from "../ConsumablesSubPage";
-import {InlineLayout} from "../../../../library/widgets/layouts/InlineLayout";
+import {InlineLayout} from "../../../../library/visual/widgets/layouts/InlineLayout";
 import Repository from "../../../../library/data/backend/Repository";
 import ConsumableItem from "../../../domain/consumables/ConsumableItem";
 import {getFromObject} from "../../../../library/data/dataObject/vanila/VanilaObjects";

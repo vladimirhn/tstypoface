@@ -1,11 +1,12 @@
-import '../../../../library/appearance/layouts/BasicAppLayout/pages.css';
+import '../../../../library/visual/appearance/layouts/BasicAppLayout/pages.css';
 
 import React, {FunctionComponent, useEffect, useState} from 'react';
 import Repository from "../../../../library/data/backend/Repository";
-import TableConfig from "../../../../library/widgets/tables/dataSetTable/TableConfig";
-import {DataSetTable} from "../../../../library/widgets/tables/dataSetTable/DataSetTable";
+import TableConfig from "../../../../library/visual/widgets/tables/dataSetTable/TableConfig";
+import {DataSetTableWidget} from "../../../../library/visual/widgets/tables/dataSetTable/DataSetTableWidget";
 import PurchasingConsumables from "../../../domain/purchasing/PurchasingConsumables";
-import {InsertPurchaseConsumablesWidget} from "./inputnewpurchasesimpleform/InsertPurchaseConsumablesWidget";
+import {ProcessPurchaseConsumableWidget} from "./inputnewpurchasesimpleform/ProcessPurchaseConsumableWidget";
+import SharedServices from "../../../../library/SharedServices";
 
 export const PurchaseConsumablesPage: FunctionComponent = () => {
 
@@ -16,17 +17,22 @@ export const PurchaseConsumablesPage: FunctionComponent = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    return (
-        <div>
+    const sharedServices:SharedServices = new SharedServices();
+    sharedServices.repository = purchasingRepository;
 
-            <h1>Закупка расходных материалов</h1>
+    const tableConfig:TableConfig = new TableConfig()
+        .processLinesWith(<ProcessPurchaseConsumableWidget sharedServices={sharedServices}/>)
+        .noDelete()
 
-            <InsertPurchaseConsumablesWidget repository={purchasingRepository}/>
+    return <div>
 
-            <DataSetTable
-                repository={purchasingRepository}
-                config={new TableConfig().noDelete()}
-            />
-        </div>
-    );
+        <h1>Закупка расходных материалов</h1>
+
+        <DataSetTableWidget
+            repository={purchasingRepository}
+            config={tableConfig}
+            sharedServices={sharedServices}
+        />
+
+    </div>;
 }

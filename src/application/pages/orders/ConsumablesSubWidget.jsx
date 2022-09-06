@@ -1,6 +1,6 @@
 import React, {useEffect, useReducer, useState} from "react";
 import DataSetManager from "../../../library/data/dataSet/DataSetManager";
-import DataSetTable from "../../../library/widgets/tables/dataSetTable/DataSetTable";
+import DataSetTable from "../../../library/visual/widgets/tables/dataSetTable/DataSetTableWidget";
 import dataUpdateEffect from "../../../library/data/dataSet/events/DataUpdateEffect";
 import OrdersConsumablesDataSet from "../../domain/orders/OrdersConsumablesDataSet";
 import ObjectFieldProcessor from "../../../library/data/dataObject/ObjectFieldProcessor";

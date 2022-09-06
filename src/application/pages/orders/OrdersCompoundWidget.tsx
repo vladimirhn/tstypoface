@@ -1,4 +1,4 @@
-import '../../../library/appearance/layouts/BasicAppLayout/pages.css';
+import '../../../library/visual/appearance/layouts/BasicAppLayout/pages.css';
 
 // import React, {useEffect, useReducer, useState} from 'react';
 //

@@ -1,12 +1,12 @@
-import '../../../library/appearance/layouts/BasicAppLayout/pages.css';
+import '../../../library/visual/appearance/layouts/BasicAppLayout/pages.css';
 
 import React from 'react';
 import OrderDetailsSimpleWidget from "./OrderDetailsSimpleWidget";
-import CheckBoxInput from "../../../library/widgets/fieldInputs/CheckBoxInput";
+import CheckBoxInput from "../../../library/visual/widgets/fieldInputs/CheckBoxInput";
 import Order from "../../domain/orders/Order";
 import ObjectFieldProcessor from "../../../library/data/dataObject/ObjectFieldProcessor";
 import ComboBoxFromMapObject
-    from "../../../library/widgets/fieldInputs/comboboxes/comboBoxFromMapObject/ComboBoxFromMapObject";
+    from "../../../library/visual/widgets/fieldInputs/comboboxes/comboBoxFromMapObject/ComboBoxFromMapObject";
 import ConsumablesSubWidget from "./ConsumablesSubWidget";
 
 

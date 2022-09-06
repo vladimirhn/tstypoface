@@ -1,12 +1,12 @@
-import '../../../../library/appearance/layouts/BasicAppLayout/pages.css';
-import '../../../../library/appearance/themes/common/size.css'
+import '../../../../library/visual/appearance/layouts/BasicAppLayout/pages.css';
+import '../../../../library/visual/appearance/themes/common/size.css'
 
 import React, {FunctionComponent} from 'react';
 import ConsumableType from "../../../domain/consumables/ConsumableType";
 import {ConsumablesSubPage} from "../ConsumablesSubPage";
 import retreat from "../../../../library/navigation/retreat";
 import Data from "../../../../library/data/dataObject/Data";
-import {TextInput} from "../../../../library/widgets/fieldInputs/TextInput";
+import {TextInput} from "../../../../library/visual/widgets/fieldInputs/TextInput";
 import {EditTypePropertySubWidget} from "./EditTypePropertySubWidget";
 import validateConsumableType from "./validateConsumableType";
 import Repository from "../../../../library/data/backend/Repository";

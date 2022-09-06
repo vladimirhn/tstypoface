@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useEffect, useState} from 'react';
-import {SimpleTextInput} from "../../../../library/widgets/fieldInputs/SimpleTextInput";
+import {SimpleTextInput} from "../../../../library/visual/widgets/fieldInputs/SimpleTextInput";
 import ConsumablesView from "../../../domain/consumables/ConsumablesView";
 import StateElement from "../../../../library/data/dataObject/StateElement";
 import DataObject from "../../../../library/data/dataObject/DataObject";
@@ -7,7 +7,7 @@ import ConsumableType from "../../../domain/consumables/ConsumableType";
 import Repository from "../../../../library/data/backend/Repository";
 import VanillaStateMap from "../../../../library/data/dataObject/vanila/VanillaStateMap";
 import ConsumablePropertyValue from "../../../domain/consumables/ConsumablePropertyValue";
-import {SimpleNumericInput} from "../../../../library/widgets/fieldInputs/numeric/SimpleNumericInput";
+import {SimpleNumericInput} from "../../../../library/visual/widgets/fieldInputs/numeric/SimpleNumericInput";
 
 interface properties {
     type:DataObject<ConsumableType>;

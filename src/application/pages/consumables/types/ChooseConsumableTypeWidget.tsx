@@ -2,7 +2,7 @@ import React, {FunctionComponent} from "react";
 import Repository from "../../../../library/data/backend/Repository";
 import ConsumableType from "../../../domain/consumables/ConsumableType";
 import Consumer from "../../../../library/functions/interfaces/Consumer";
-import {ComboBoxFromRepository} from "../../../../library/widgets/fieldInputs/comboboxes/ComboBoxFromRepository";
+import {ComboBoxFromRepository} from "../../../../library/visual/widgets/fieldInputs/comboboxes/ComboBoxFromRepository";
 import DataObject from "../../../../library/data/dataObject/DataObject";
 
 interface properties {

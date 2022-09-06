@@ -1,11 +1,11 @@
-import '../../../library/appearance/layouts/BasicAppLayout/pages.css';
-import '../../../library/appearance/themes/common/size.css'
+import '../../../library/visual/appearance/layouts/BasicAppLayout/pages.css';
+import '../../../library/visual/appearance/themes/common/size.css'
 
 import React, {useEffect, useState, useReducer, FunctionComponent} from 'react';
 import MoneyMovement from "../../domain/enterprises/MoneyMovement";
 import DataObject from "../../../library/data/dataObject/DataObject";
-import {DataSetTable} from "../../../library/widgets/tables/dataSetTable/DataSetTable";
-import TableConfig from "../../../library/widgets/tables/dataSetTable/TableConfig";
+import {DataSetTableWidget} from "../../../library/visual/widgets/tables/dataSetTable/DataSetTableWidget";
+import TableConfig from "../../../library/visual/widgets/tables/dataSetTable/TableConfig";
 import Repository from "../../../library/data/backend/Repository";
 
 export const MoneyMovementPage: FunctionComponent = () => {
@@ -59,7 +59,7 @@ export const MoneyMovementPage: FunctionComponent = () => {
 
             <br/><br/>
 
-            <DataSetTable
+            <DataSetTableWidget
                 repository={repository}
                 config={new TableConfig()}
             />
