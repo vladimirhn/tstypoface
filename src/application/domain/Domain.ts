@@ -9,6 +9,9 @@ import ConsumablesView from "./consumables/ConsumablesView";
 import ConsumableItem from "./consumables/ConsumableItem";
 import ConsumablePropertyValue from "./consumables/ConsumablePropertyValue";
 import PurchasingConsumables from "./purchasing/PurchasingConsumables";
+import Stock from "./stocks/Stock";
+import OrderSubjectType from "./orderSubjects/OrderSubjectType";
+import OrderSubject from "./orderSubjects/OrderSubject";
 
 export default class Domain {
 
@@ -24,6 +27,9 @@ export default class Domain {
             [ConsumableItem, new ConsumableItem()],
             [ConsumablePropertyValue, new ConsumablePropertyValue()],
             [PurchasingConsumables, new PurchasingConsumables()],
+            [Stock, new Stock()],
+            [OrderSubjectType, new OrderSubjectType()],
+            [OrderSubject, new OrderSubject()],
         ]
     ));
 

@@ -3,7 +3,6 @@ import '../../../library/visual/appearance/themes/common/size.css'
 
 import React, {FunctionComponent, useEffect, useState} from 'react';
 import ConsumableType from "../../domain/consumables/ConsumableType";
-import {ChooseConsumableTypeWidget} from "./types/ChooseConsumableTypeWidget";
 import DataObject from "../../../library/data/dataObject/DataObject";
 import {ConsumablesSubPage} from "./ConsumablesSubPage";
 import {AddNewConsumableTypeWidget} from "./types/AddNewConsumableTypeWidget";
@@ -14,6 +13,7 @@ import {ItemsTable} from "./items/ItemsTable";
 import {AddNewItemWidget} from "./items/AddNewItemWidget";
 import {EditItemWidget} from "./items/EditItemWidget";
 import Repository from "../../../library/data/backend/Repository";
+import {ComboBoxFromRepository} from "../../../library/visual/widgets/fieldInputs/comboboxes/ComboBoxFromRepository";
 
 export const ManageConsumablesPage: FunctionComponent = () => {
 
@@ -28,6 +28,7 @@ export const ManageConsumablesPage: FunctionComponent = () => {
     const [consumableTypesRepository, setRepository] = useState<Repository<any>>(Repository.empty(ConsumableType));
     useEffect(() => {
         consumableTypesRepository.initialFetchAll(setRepository);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const deleteType = () => {
@@ -35,7 +36,14 @@ export const ManageConsumablesPage: FunctionComponent = () => {
         updateSelectedType(undefined);
     }
 
-    const chooseConsumableTypeWidget = <ChooseConsumableTypeWidget setter={updateSelectedType} selectedId={selectedType?.data?.id} consumableTypesRepository={consumableTypesRepository}/>
+    const chooseConsumableTypeWidget = <ComboBoxFromRepository
+        consumeChoice={updateSelectedType}
+        isInline={true}
+        label={"Выбрать тип: "}
+        repository={consumableTypesRepository}
+        hideIfEmpty={true}
+        selectedId={selectedType?.data?.id}
+    />
     const addButton = <button onClick={() => {navigationState[1](proceed(navigationState[0], ConsumablesSubPage.ADD_TYPE)) }}>Добавить</button>
     const editButton = selectedType ? <button onClick={() => {navigationState[1](proceed(navigationState[0], ConsumablesSubPage.EDIT_TYPE)) }}>Изменить</button> : null;
     const deleteButton = selectedType ? <button onClick={deleteType}>Удалить</button> : null;

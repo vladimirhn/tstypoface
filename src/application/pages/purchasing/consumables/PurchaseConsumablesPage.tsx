@@ -22,7 +22,6 @@ export const PurchaseConsumablesPage: FunctionComponent = () => {
 
     const tableConfig:TableConfig = new TableConfig()
         .processLinesWith(<ProcessPurchaseConsumableWidget sharedServices={sharedServices}/>)
-        .noDelete()
 
     return <div>
 

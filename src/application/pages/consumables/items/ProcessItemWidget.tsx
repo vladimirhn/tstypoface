@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useEffect, useState} from 'react';
-import {SimpleTextInput} from "../../../../library/visual/widgets/fieldInputs/SimpleTextInput";
+import {SimpleTextInput} from "../../../../library/visual/widgets/fieldInputs/text/SimpleTextInput";
 import ConsumablesView from "../../../domain/consumables/ConsumablesView";
 import StateElement from "../../../../library/data/dataObject/StateElement";
 import DataObject from "../../../../library/data/dataObject/DataObject";

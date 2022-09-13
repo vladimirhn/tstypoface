@@ -6,7 +6,7 @@ import ConsumableType from "../../../domain/consumables/ConsumableType";
 import {ConsumablesSubPage} from "../ConsumablesSubPage";
 import retreat from "../../../../library/navigation/retreat";
 import Data from "../../../../library/data/dataObject/Data";
-import {TextInput} from "../../../../library/visual/widgets/fieldInputs/TextInput";
+import {TextInput} from "../../../../library/visual/widgets/fieldInputs/text/TextInput";
 import {EditTypePropertySubWidget} from "./EditTypePropertySubWidget";
 import validateConsumableType from "./validateConsumableType";
 import Repository from "../../../../library/data/backend/Repository";

@@ -8,6 +8,8 @@ import {MoneyMovementPage} from "../pages/enterprises/MoneyMovementPage";
 import {ManageConsumablesPage} from "../pages/consumables/ManageConsumablesPage";
 import {PurchaseConsumablesPage} from "../pages/purchasing/consumables/PurchaseConsumablesPage";
 import {OrdersPage} from "../pages/orders/OrdersPage";
+import {StockPage} from "../pages/stocks/StockPage";
+import {OrderSubjectsPage} from "../pages/orderSubjects/OrderSubjectsPage";
 const Pages: Page[] = [
 
     Page.title("Старт")
@@ -23,6 +25,12 @@ const Pages: Page[] = [
 
     Page.title("Закупки")
         .withSubPage(Page.title("Закупка расходных материалов").withWidget(<PurchaseConsumablesPage/>)),
+
+    Page.title("Склад")
+        .withSubPage(Page.title("Складские остатки").withWidget(<StockPage/>)),
+
+    Page.title("Продукция")
+        .withSubPage(Page.title("Продукция").withWidget(<OrderSubjectsPage/>)),
 
     Page.title("Заказы")
         .withSubPage(Page.title("Заказы").withWidget(<OrdersPage/>)),

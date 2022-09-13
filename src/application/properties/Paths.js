@@ -13,7 +13,7 @@ export default class Paths {
 
     static stockBalance = Paths.userPrefix + "/stock_balance";
 
-    static orderSubjectTypes = "/order_subject_types";
+    static orderSubjectsTypes = Paths.userPrefix + "/order_subjects_types";
     static orderSubjects = Paths.userPrefix + "/order_subjects";
     static orders = Paths.userPrefix + "/orders";
     static orders2 = Paths.userPrefix + "/orders2";
