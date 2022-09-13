@@ -10,6 +10,7 @@ import {PurchaseConsumablesPage} from "../pages/purchasing/consumables/PurchaseC
 import {OrdersPage} from "../pages/orders/OrdersPage";
 import {StockPage} from "../pages/stocks/StockPage";
 import {OrderSubjectsPage} from "../pages/orderSubjects/OrderSubjectsPage";
+import {LegalEntitiesPage} from "../pages/counterparties/LegalEntitiesPage";
 const Pages: Page[] = [
 
     Page.title("Старт")
@@ -34,6 +35,9 @@ const Pages: Page[] = [
 
     Page.title("Заказы")
         .withSubPage(Page.title("Заказы").withWidget(<OrdersPage/>)),
+
+    Page.title("Контрагенты")
+        .withSubPage(Page.title("Юридические лица").withWidget(<LegalEntitiesPage/>)),
 ]
 
 export default Pages;

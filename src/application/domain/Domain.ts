@@ -12,6 +12,7 @@ import PurchasingConsumables from "./purchasing/PurchasingConsumables";
 import Stock from "./stocks/Stock";
 import OrderSubjectType from "./orderSubjects/OrderSubjectType";
 import OrderSubject from "./orderSubjects/OrderSubject";
+import LegalEntity from "./counterparties/LegalEntity";
 
 export default class Domain {
 
@@ -30,6 +31,7 @@ export default class Domain {
             [Stock, new Stock()],
             [OrderSubjectType, new OrderSubjectType()],
             [OrderSubject, new OrderSubject()],
+            [LegalEntity, new LegalEntity()],
         ]
     ));
 

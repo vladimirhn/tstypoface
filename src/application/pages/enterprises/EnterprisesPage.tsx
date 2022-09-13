@@ -25,7 +25,7 @@ export const EnterprisesPage: FunctionComponent = () => {
 
             <DataSetTableWidget
                 repository={finTransRepository}
-                config={new TableConfig().noDelete().inlineFilters()}
+                config={new TableConfig().noDelete().useInlineFilters()}
             />
         </div>
     );

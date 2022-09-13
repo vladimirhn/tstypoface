@@ -89,7 +89,6 @@ export const ManageOrderSubjectWidget: FunctionComponent = () => {
                         .withNavigation(navigation)
                         .withRepository(typeRepository)}
                     selectedEntryState={selectedTypeState}
-
                 />;
 
             case OrderSubjectsSubPage.PROCESS_ITEM:
