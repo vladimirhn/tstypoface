@@ -86,6 +86,13 @@ export const ProcessPurchaseConsumableForm: FunctionComponent<properties>= ({   
         {capacityInputLine}
         {priceInputLine}
         {amountInputLine}
+
+        <ChooseFromTablePopupWidget
+            config={new TableConfig().noDelete()}
+            exampleObjectState={exampleObjectState}
+            fieldDescription={PurchasingConsumables.legalEntityId}
+        />
+
         {totalLine}
         {applyButton}
     </div>

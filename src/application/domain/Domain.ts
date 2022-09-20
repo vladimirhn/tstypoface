@@ -13,6 +13,8 @@ import Stock from "./stocks/Stock";
 import OrderSubjectType from "./orderSubjects/OrderSubjectType";
 import OrderSubject from "./orderSubjects/OrderSubject";
 import LegalEntity from "./counterparties/LegalEntity";
+import OrderConsumables from "./orders/OrderConsumables";
+import Order from "./orders/Order";
 
 export default class Domain {
 
@@ -32,6 +34,8 @@ export default class Domain {
             [OrderSubjectType, new OrderSubjectType()],
             [OrderSubject, new OrderSubject()],
             [LegalEntity, new LegalEntity()],
+            [Order, new Order()],
+            [OrderConsumables, new OrderConsumables()],
         ]
     ));
 

@@ -1,84 +1,89 @@
 import '../../../library/visual/appearance/layouts/BasicAppLayout/pages.css';
 
-// import React, {useEffect, useReducer, useState} from 'react';
-//
-// import DataSetTable from "../../../library/widgets/tables/dataSetTable/DataSetTable";
-// import ProcessOrderWidget from "./ProcessOrderWidget";
-// import DataSetManager from "../../../library/data/dataSet/DataSetManager";
-// import dataUpdateEffect from "../../../library/data/dataSet/events/DataUpdateEffect";
-// import OrdersDataSet from "../../domain/orders/OrdersDataSet";
-// import NewOrderSubWidget from "./NewOrderSubWidget";
-// import TrueFalseButton from "../../../library/widgets/buttons/TrueFalseButton";
-// import ProcessConsumablesSubWidget from "./ProcessConsumablesSubWidget";
+import React, {FunctionComponent, useEffect, useState} from 'react';
 
-export default function OrdersCompoundWidget() {
+import {ProcessOrderWidget} from "./ProcessOrderWidget";
+import {NewOrderSubWidget} from "./NewOrderSubWidget";
+import {ProcessConsumablesSubWidget} from "./ProcessConsumablesSubWidget";
+import {TrueFalseButton} from "../../../library/visual/widgets/buttons/TrueFalseButton";
+import RepositoryState from "../../../library/data/backend/RepositoryState";
+import Repository from "../../../library/data/backend/Repository";
+import Order from "../../domain/orders/Order";
+import BooleanState from "../../../library/data/dataObject/vanila/BooleanState";
+import TableConfig from "../../../library/visual/widgets/tables/dataSetTable/TableConfig";
+import {DataSetTableWidget} from "../../../library/visual/widgets/tables/dataSetTable/DataSetTableWidget";
+import DataObjectState from "../../../library/data/dataObject/DataObjectState";
+import DataObject from "../../../library/data/dataObject/DataObject";
 
-    // const [dataSet,] = useState(DataSetManager.getNew(OrdersDataSet));
-    // const [, redraw] = useReducer((x) => x + 1, 0, (a) => a);
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // useEffect(dataUpdateEffect(dataSet, redraw), []);
-    //
-    // const [orderDetailSwVisible, setOrderDetailsSwVisible] = useState(false);
-    // const [consumablesSwVisible, setConsumablesSwVisible] = useState(false);
-    //
-    // const toggleOrderDetailSwVisibility = () => {
-    //     setOrderDetailsSwVisible(!orderDetailSwVisible);
-    // }
-    // const toggleConsumablesSwVisibility = () => {
-    //     setConsumablesSwVisible(!consumablesSwVisible);
-    // }
-    //
-    // const orderDetailSwButton = <TrueFalseButton
-    //     toggleFunct={toggleOrderDetailSwVisibility}
-    //     variable={orderDetailSwVisible}
-    //     trueLabel={"Отмена"}
-    //     falseLabel={"Новый заказ"}
-    // />
-    //
-    // let afterSelectionWidget = null;
-    // let newOrderWidget = null;
-    //
-    // if (dataSet.hasSelection) {
-    //     afterSelectionWidget = consumablesSwVisible ?
-    //         <ProcessConsumablesSubWidget
-    //             dataSet={dataSet}
-    //             toggleVisibilityFunct={toggleConsumablesSwVisibility}
-    //         />
-    //         :
-    //     <ProcessOrderWidget
-    //         dataSet={dataSet}
-    //         redrawFunct={redraw}
-    //         toggleConsumablesSwVisibility={toggleConsumablesSwVisibility}
-    //     />
-    //
-    // } else {
-    //
-    //     if (!orderDetailSwVisible) {
-    //         afterSelectionWidget =
-    //             <DataSetTable
-    //                 dataSet={dataSet}
-    //                 noDel={true}
-    //             />
-    //     }
-    //
-    //     newOrderWidget =
-    //         <>
-    //             {orderDetailSwButton}
-    //             {orderDetailSwVisible ?
-    //                 <NewOrderSubWidget
-    //                     dataSet={dataSet}
-    //                     toggleVisibilityFunct={toggleOrderDetailSwVisibility}
-    //                 />
-    //                 : null}
-    //
-    //             <br/><br/>
-    //         </>
-    // }
-    //
-    // return <>
-    //     {newOrderWidget}
-    //     {afterSelectionWidget}
-    // </>
+export const OrdersCompoundWidget: FunctionComponent = () => {
 
-    return <></>
+    const ordersRepositoryState:RepositoryState<Order> = new RepositoryState<any>(useState(Repository.empty(Order)));
+    useEffect(() => {
+        ordersRepositoryState.initialFetchAll()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+    
+    const selectedEntryState:DataObjectState = new DataObjectState(useState(DataObject.empty));
+    const applySelection = (entry:DataObject<Order>) => {
+        selectedEntryState.setDataObject(entry);
+    }
+
+
+    const isOrderDetailSwVisible:BooleanState = new BooleanState(useState<boolean>(false));
+    const isConsumablesSwVisible:BooleanState = new BooleanState(useState<boolean>(false));
+
+    const orderDetailSwButton = <TrueFalseButton
+        variableState={isOrderDetailSwVisible}
+        trueLabel={"Отмена"}
+        falseLabel={"Новый заказ"}
+    />
+
+    let afterSelectionWidget = null;
+    let newOrderWidget = null;
+
+    const isSelected = !selectedEntryState.isEmpty();
+    const selectedEntry = selectedEntryState.getDataObject();
+
+    if (isSelected && selectedEntry) {
+        afterSelectionWidget = isConsumablesSwVisible.getValue() ?
+            <ProcessConsumablesSubWidget
+                repository={ordersRepositoryState.repository}
+                selectedEntry={selectedEntry}
+                isConsumablesSwVisible={isConsumablesSwVisible}
+            />
+            :
+            <ProcessOrderWidget
+                repository={ordersRepositoryState.repository}
+                selectedEntry={selectedEntry}
+                isConsumablesSwVisible={isConsumablesSwVisible}
+                selectedEntryState={selectedEntryState}
+            />
+
+    } else {
+
+        if (!isOrderDetailSwVisible.getValue()) {
+            afterSelectionWidget =
+                <DataSetTableWidget
+                    repository={ordersRepositoryState.repository}
+                    config={new TableConfig().onSelectionFunc(applySelection)}
+                />
+        }
+
+        newOrderWidget =
+            <>
+                {orderDetailSwButton}
+                {isOrderDetailSwVisible.getValue() ?
+                    <NewOrderSubWidget
+                        repository={ordersRepositoryState.repository}
+                    />
+                    : null}
+
+                <br/><br/>
+            </>
+    }
+
+    return <>
+        {newOrderWidget}
+        {afterSelectionWidget}
+    </>
 }

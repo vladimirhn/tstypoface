@@ -1,7 +1,7 @@
 import '../../../library/visual/appearance/layouts/BasicAppLayout/pages.css';
 
 import React, {FunctionComponent} from 'react';
-import OrdersCompoundWidget from "./OrdersCompoundWidget";
+import {OrdersCompoundWidget} from "./OrdersCompoundWidget";
 
 
 export const OrdersPage: FunctionComponent = () => {

@@ -4,6 +4,7 @@ import ObjectFieldDescription from "../../../library/data/dataObject/objectField
 import DataType from "../../../library/data/dataObject/DataType";
 import ObjectDescription from "../../../library/data/backend/ObjectDescription";
 import ConsumableItem from "../consumables/ConsumableItem";
+import LegalEntity from "../counterparties/LegalEntity";
 
 
 export default class PurchasingConsumables extends DomainClass<PurchasingConsumables>{
@@ -17,8 +18,8 @@ export default class PurchasingConsumables extends DomainClass<PurchasingConsuma
     static readonly price =           ObjectFieldDescription.label("цена").withType(DataType.NUMERIC);
     static readonly amount =          ObjectFieldDescription.label("количество").withType(DataType.NUMERIC);
     static readonly capacity =        ObjectFieldDescription.label("кол-во в упаковке").withType(DataType.NUMERIC);
-    static readonly legalEntityId =   ObjectFieldDescription.label("legalEntityId").setVisible(false);
-    // static readonly legalEntity = ObjectFieldDescription.label("контрагент").withForeignModel(ConsumableItem).withType(DataType.OBJECT);
+    static readonly legalEntityId =   ObjectFieldDescription.label("контрагент").withForeignModel(LegalEntity).withType(DataType.FOREIGN_ID).setVisible(false).setFilter(true);
+    static readonly legalEntity =     ObjectFieldDescription.label("контрагент").withForeignModel(LegalEntity).withType(DataType.FOREIGN_OBJECT);
 
     static readonly objectDescription: ObjectDescription<PurchasingConsumables> = new ObjectDescription<PurchasingConsumables>(PurchasingConsumables);
 

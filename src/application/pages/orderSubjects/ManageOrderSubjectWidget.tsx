@@ -77,7 +77,7 @@ export const ManageOrderSubjectWidget: FunctionComponent = () => {
 
             {selectedTypeState.getId() ? <DataSetTableWidget
                 repository={itemRepositoryState.repository}
-                config={new TableConfig().onAddEditButtonFunc(onAddEditItemButtonFunc).noFilers()}
+                config={new TableConfig().onAddEditButtonFunc(onAddEditItemButtonFunc).noFilters()}
             /> : null}
         </>
 
