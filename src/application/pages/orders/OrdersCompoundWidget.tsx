@@ -75,6 +75,7 @@ export const OrdersCompoundWidget: FunctionComponent = () => {
                 {isOrderDetailSwVisible.getValue() ?
                     <NewOrderSubWidget
                         repository={ordersRepositoryState.repository}
+                        isOrderDetailSwVisible={isOrderDetailSwVisible}
                     />
                     : null}
 

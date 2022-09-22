@@ -14,7 +14,7 @@ export default class Order extends DomainClass<Order>{
     static readonly path = Paths.orders2;
 
     static id =             ObjectFieldDescription.label("id").setVisible(false);
-    static orderSubjectId = ObjectFieldDescription.label("Продукт/услуга").withForeignModel(OrderSubject).withType(DataType.FOREIGN_ID).setVisible(false).setFilter(true);
+    static orderSubjectId = ObjectFieldDescription.label("Продукт/услуга").withForeignModel(OrderSubject).withType(DataType.FOREIGN_ID).setMandatory(true).setVisible(false).setFilter(true);
     static orderSubject =   ObjectFieldDescription.label("Продукт/услуга").withForeignModel(OrderSubject).withType(DataType.FOREIGN_OBJECT);
     static legalEntityId =  ObjectFieldDescription.label("контрагент").withForeignModel(LegalEntity).withType(DataType.FOREIGN_ID).setVisible(false).setFilter(true);
     static legalEntity =    ObjectFieldDescription.label("контрагент").withForeignModel(LegalEntity).withType(DataType.FOREIGN_OBJECT);
