@@ -29,10 +29,9 @@ export const ProcessConsumablesSubWidget: FunctionComponent<properties> = ({repo
 
     const newOrderConsumableState:DataObjectState = new DataObjectState(useState(DataObject.withField(OrderConsumables.orderId, orderId)));
 
-
     return <>
 
-        <button onClick={isConsumablesSwVisible.toggleValue}>Назад</button>
+        <button onClick={() => isConsumablesSwVisible.toggleValue()}>Назад</button>
         <br/><br/>
 
         <div className={"widget"}>

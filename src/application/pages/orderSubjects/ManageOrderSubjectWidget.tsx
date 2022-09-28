@@ -54,7 +54,6 @@ export const ManageOrderSubjectWidget: FunctionComponent = () => {
 
     const chooseTypeWidget = <ComboBoxFromRepository
         consumeChoice={updateSelectedType}
-        isInline={true}
         label={"Категория: "}
         repository={typeRepository}
         hideIfEmpty={true}

@@ -29,7 +29,7 @@ export const ConsumablesSubWidget: FunctionComponent<properties> = ({selectedEnt
     return <>
 
         <b>Расходные материалы </b>
-        <button onClick={isConsumablesSwVisible.toggleValue}>редактировать</button>
+        <button onClick={() => isConsumablesSwVisible.toggleValue()}>редактировать</button>
 
         {consumables}
 

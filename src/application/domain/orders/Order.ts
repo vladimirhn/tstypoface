@@ -18,7 +18,7 @@ export default class Order extends DomainClass<Order>{
     static orderSubject =   ObjectFieldDescription.label("Продукт/услуга").withForeignModel(OrderSubject).withType(DataType.FOREIGN_OBJECT);
     static legalEntityId =  ObjectFieldDescription.label("контрагент").withForeignModel(LegalEntity).withType(DataType.FOREIGN_ID).setVisible(false).setFilter(true);
     static legalEntity =    ObjectFieldDescription.label("контрагент").withForeignModel(LegalEntity).withType(DataType.FOREIGN_OBJECT);
-    static amount =         ObjectFieldDescription.label("количество").withType(DataType.NUMERIC).setMandatory(true);
+    static amount =         ObjectFieldDescription.label("кол-во").withType(DataType.NUMERIC).setMandatory(true);
     static orderDate =      ObjectFieldDescription.label("дата заказа").withType(DataType.DATE).withDefault(Dates.getToday()).setMandatory(true).setFilter(true);
     static orderDeadline =  ObjectFieldDescription.label("дедлайн").withType(DataType.DATE).setFilter(true);
     static status =         ObjectFieldDescription.label("статус").withValuesMap(OrderStatuses).withType(DataType.MAP).setFilter(true);

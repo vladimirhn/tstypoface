@@ -14,7 +14,7 @@ interface properties {
 
 export const NewOrderSubWidget: FunctionComponent<properties> = ({repository, isOrderDetailSwVisible}) => {
 
-    const newOrderConsumableState:DataObjectState = new DataObjectState(useState(DataObject.fromClass(Order)));
+    const newOrderConsumableState:DataObjectState = new DataObjectState(useState(DataObject.fromClass(Order, true)));
 
     const orderDetailSw = <OrderDetailsSimpleWidget
         exampleObjectState={newOrderConsumableState}

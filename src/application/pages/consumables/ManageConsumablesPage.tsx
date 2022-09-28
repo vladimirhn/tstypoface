@@ -38,7 +38,6 @@ export const ManageConsumablesPage: FunctionComponent = () => {
 
     const chooseConsumableTypeWidget = <ComboBoxFromRepository
         consumeChoice={updateSelectedType}
-        isInline={true}
         label={"Выбрать тип: "}
         repository={consumableTypesRepository}
         hideIfEmpty={true}

@@ -44,7 +44,6 @@ export const OrderDetailsSimpleWidget: FunctionComponent<properties> = ({example
         <ComboBoxFromForeign
             fieldDescription={Order.legalEntityId}
             exampleObjectState={exampleObjectState}
-            isInline={true}
             onChoice={() => repository.fetchFiltered(exampleObjectState.getDataObject())}
         />
 
