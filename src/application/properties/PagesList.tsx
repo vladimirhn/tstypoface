@@ -11,7 +11,7 @@ import {OrdersPage} from "../pages/orders/OrdersPage";
 import {StockPage} from "../pages/stocks/StockPage";
 import {OrderSubjectsPage} from "../pages/orderSubjects/OrderSubjectsPage";
 import {LegalEntitiesPage} from "../pages/counterparties/LegalEntitiesPage";
-const Pages: Page[] = [
+const PagesList: Page[] = [
 
     Page.title("Старт")
         .withSubPage(Page.title("Главная").withWidget(<StartPage/>))
@@ -40,4 +40,4 @@ const Pages: Page[] = [
         .withSubPage(Page.title("Юридические лица").withWidget(<LegalEntitiesPage/>)),
 ]
 
-export default Pages;
+export default PagesList;
